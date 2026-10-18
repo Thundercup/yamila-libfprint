@@ -1,0 +1,19 @@
+{
+  "file": "YmlWbioEngineAdapter.dll",
+  "sha256": "f745baf9c94488473e98472a5e779c120abfa72a2058af3b9c61c80affc7a9c1",
+  "size": 2867104,
+  "file_version": "1.0.0.3738",
+  "product_version": "1.0.0.3738",
+  "company_name": "Yamila Electronics co., LTD",
+  "original_filename": "YmlWbioEngineAdapter.dll",
+  "copyright": "Copyright(C) 2022 Yamila Electronics co., LTD.",
+  "origin": "Yamila Windows x64 driver package for USB 2808:06fc",
+  "driver_package": {
+    "inf_filename": "ymlwbiodriverumdf.inf",
+    "driver_ver": "01/08/2024,1.0.0.3973",
+    "note": "Driver package version differs from the engine DLL version."
+  },
+  "license": "LicenseRef-Yamila-Vendor-Binary",
+  "license_notice": "LICENSE-NOTICE.md",
+  "redistribution": "Included with the community source and distribution assets by maintainer decision. No independent vendor license grant has been verified."
+}

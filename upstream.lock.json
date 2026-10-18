@@ -1,0 +1,9 @@
+{
+  "project": "libfprint",
+  "version": "1.94.100",
+  "archive": "libfprint-v1.94.100.tar.gz",
+  "url": "https://gitlab.freedesktop.org/libfprint/libfprint/-/archive/v1.94.100/libfprint-v1.94.100.tar.gz",
+  "sha256": "edc90e02f330a7595ceaf37f2c6ec32ed43541347fe936d3273b0bb2524fd19c",
+  "license": "LGPL-2.1-or-later AND NIST-PD",
+  "verification": "Archive from Fedora-signed libfprint-1.94.100-1.fc44 source RPM; no Fedora source patches."
+}

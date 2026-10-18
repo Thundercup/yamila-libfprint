@@ -1,0 +1,360 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature_request.yml",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": ".github/workflows/packages.yml",
+      "origin": "Project experimental distribution packaging and public boundary checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": ".github/workflows/synthetic.yml",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": ".gitignore",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "LICENSES/LGPL-2.1-or-later.txt",
+      "origin": "GNU Lesser General Public License version 2.1, Free Software Foundation",
+      "license": "LicenseRef-License-Text"
+    },
+    {
+      "path": "NOTICE.md",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "README.md",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "README.zh-CN.md",
+      "origin": "Project Simplified Chinese user documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "docs/RELEASING.md",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "docs/SUPPORT.md",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "docs/TROUBLESHOOTING.md",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "docs/UBUNTU.md",
+      "origin": "Project experimental Ubuntu build and test guide",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "driver/yamila.c",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "driver/yamila_virtual.c",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "native/engine_callback_fields.def.h",
+      "origin": "Project-authored worker, ABI layout and memory adapter; see NOTICE.md",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "native/engine_guard.c",
+      "origin": "Project-authored worker, ABI layout and memory adapter; see NOTICE.md",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "native/memory_storage.h",
+      "origin": "Project-authored worker, ABI layout and memory adapter; see NOTICE.md",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "native/native_abi.h",
+      "origin": "Project-authored worker, ABI layout and memory adapter; see NOTICE.md",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "native/native_loader.c",
+      "origin": "OMGrant/ft9201-libfprint src/ft_engine.c at fcf5499c6ddadf0d2a03be14b173609e760a7ec6, modified for Yamila",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "native/native_worker.c",
+      "origin": "Project-authored worker, ABI layout and memory adapter; see NOTICE.md",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "native/winbio_compat.h",
+      "origin": "Project-authored worker, ABI layout and memory adapter; see NOTICE.md",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/INSTALL.md",
+      "origin": "Project Fedora build and recovery guide",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/debian/pam_integration.py",
+      "origin": "Project Ubuntu PAM profile ownership integration and synthetic checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/debian/preflight.py",
+      "origin": "Project experimental distribution packaging and public boundary checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/debian/test_pam_integration.py",
+      "origin": "Project Ubuntu PAM profile ownership integration and synthetic checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/debian/test_preflight.py",
+      "origin": "Project experimental distribution packaging and public boundary checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/fedora44-build.lock.json",
+      "origin": "Project Fedora packaging and installation policy",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/files/20-yamila-libfprint.conf",
+      "origin": "Project Fedora packaging and installation policy",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/files/70-yamila-fprint.rules",
+      "origin": "Project Fedora packaging and installation policy",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/files/yamila-fprint.conf",
+      "origin": "Project Fedora packaging and installation policy",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/preflight.py",
+      "origin": "Project Fedora packaging and installation policy",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/selinux/yamila_libfprint.te",
+      "origin": "Project targeted SELinux integration and ownership checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/selinux_policy.py",
+      "origin": "Project targeted SELinux integration and ownership checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/tests/rpm_lab.py",
+      "origin": "Project isolated packaging checks with synthetic data",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/tests/test_preflight.py",
+      "origin": "Project isolated packaging checks with synthetic data",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/tests/test_selinux.py",
+      "origin": "Project synthetic SELinux ownership boundaries",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/yamila-libfprint.spec.in",
+      "origin": "Project Fedora packaging and installation policy",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "public-files.json",
+      "origin": "Project distribution allowlist",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "runtime/assets.py",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "runtime/bridge.py",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "runtime/broker.py",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "runtime/native_bridge.py",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "runtime/protocol.py",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "runtime/usb_transport.py",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tests/test-yamila.c",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tests/test_assets.py",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tests/test_audit.py",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tests/test_pipeline.py",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tests/test_privacy.py",
+      "origin": "Project experimental distribution packaging and public boundary checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tests/test_release.py",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/audit.py",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/build.py",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/check.py",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/ci_packages.py",
+      "origin": "Project experimental distribution packaging and public boundary checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/deb.py",
+      "origin": "Project experimental distribution packaging and public boundary checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/export.py",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/fetch_upstream.py",
+      "origin": "Project experimental distribution packaging and public boundary checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/inspect_deb.py",
+      "origin": "Project experimental distribution packaging and public boundary checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/inspect_rpm.py",
+      "origin": "Project Fedora package inspection",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/privacy_check.py",
+      "origin": "Project experimental distribution packaging and public boundary checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/release_check.py",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/rpm.py",
+      "origin": "Project Fedora packaging and installation policy",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/stage.py",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "upstream.lock.json",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "vendor/LICENSE-NOTICE.md",
+      "origin": "Project-authored vendor identity and distribution notice",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "vendor/YmlWbioEngineAdapter.dll",
+      "origin": "Yamila vendor engine binary, unchanged",
+      "license": "LicenseRef-Yamila-Vendor-Binary"
+    },
+    {
+      "path": "vendor/source.json",
+      "origin": "Project-authored vendor identity and distribution notice",
+      "license": "LGPL-2.1-or-later"
+    }
+  ]
+}

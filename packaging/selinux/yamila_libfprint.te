@@ -1,0 +1,17 @@
+# SPDX-License-Identifier: LGPL-2.1-or-later
+# Private anonymous algorithm images; no write/execute grant on generic tmpfs_t.
+module yamila_libfprint 0.2;
+require {
+    type fprintd_t;
+    type tmpfs_t;
+    attribute file_type;
+    class capability { setuid setgid kill };
+    class file { create open read write getattr map execute };
+    class filesystem associate;
+}
+type yamila_engine_memfd_t;
+typeattribute yamila_engine_memfd_t file_type;
+type_transition fprintd_t tmpfs_t:file yamila_engine_memfd_t;
+allow yamila_engine_memfd_t tmpfs_t:filesystem associate;
+allow fprintd_t yamila_engine_memfd_t:file { create open read write getattr map execute };
+allow fprintd_t self:capability { setuid setgid kill };

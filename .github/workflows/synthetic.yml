@@ -1,0 +1,40 @@
+name: Synthetic checks
+'on':
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: synthetic-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  synthetic:
+    runs-on: ubuntu-24.04
+    container: fedora:44
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Check out audited source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Prepare Fedora build dependencies and ordinary account
+        run: |
+          dnf install -y gcc gcc-c++ meson ninja-build pkgconf-pkg-config python3 glib2-devel libgusb-devel libusb1-devel json-glib-devel openssl-devel shadow-utils util-linux
+          useradd --create-home --uid 1001 builder
+          chown -R builder:builder "$GITHUB_WORKSPACE"
+      - name: Audit public source and documentation
+        run: |
+          runuser -u builder -- python3 -B tools/audit.py
+          runuser -u builder -- python3 -B tools/release_check.py
+          runuser -u builder -- python3 -B tools/privacy_check.py
+      - name: Compile synthetic driver and worker
+        run: runuser -u builder -- python3 -B tools/build.py --fetch-upstream --test-mode
+      - name: Run synthetic checks without USB or vendor execution
+        run: runuser -u builder -- python3 -B tools/check.py
+      - name: Verify independent public export
+        run: |
+          runuser -u builder -- python3 -B tools/export.py --dest /tmp/yamila-public-export
+          runuser -u builder -- python3 -B /tmp/yamila-public-export/tools/release_check.py

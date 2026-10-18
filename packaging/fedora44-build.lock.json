@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "target": "Fedora 44 x86_64",
+  "source_date_epoch": 1792281600,
+  "rpmbuild": "6.0.2-1.fc44",
+  "build_requires": {
+    "gcc": "16.2.1-2.fc44",
+    "gcc-c++": "16.2.1-2.fc44",
+    "meson": "1.11.2-1.fc44",
+    "ninja-build": "1.13.2-2.fc44",
+    "python3": "3.14.8-1.fc44",
+    "glib2-devel": "2.88.4-1.fc44",
+    "libgusb-devel": "0.4.9-5.fc44",
+    "libusb1-devel": "1.0.30-1.fc44",
+    "json-glib-devel": "1.10.8-5.fc44",
+    "openssl-devel": "1:3.5.9-1.fc44",
+    "redhat-rpm-config": "344-2.fc44",
+    "systemd-rpm-macros": "259.9-1.fc44",
+    "checkpolicy": "3.11-1.fc44",
+    "policycoreutils": "3.11-2.fc44"
+  },
+  "runtime_packages": {
+    "libfprint": "1.94.100-1.fc44",
+    "fprintd": "1.94.5-5.fc44",
+    "selinux-policy-targeted": "44.11-1.fc44"
+  }
+}

@@ -1,0 +1,502 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug_report.yml",
+      "size": 1971,
+      "sha256": "a9e4a68c56c50295f68f6744bfa06751469ea5fc79ecac681e0cb2cbe8c1bca3",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "size": 28,
+      "sha256": "1f103c6a9dd07cd13a9a6f17ace6b813f47747eb9cb7e00488cb2073caaf91bb",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/feature_request.yml",
+      "size": 695,
+      "sha256": "6f33927a09f2f7781fcbb73782abc76ed0332100105e5dc6dac4f9fe64e26fd0",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": ".github/workflows/packages.yml",
+      "size": 2305,
+      "sha256": "87f1daa7e2a438a1aaa3b153a4715a80a06bd44bf0cd7415cad72430384b424c",
+      "origin": "Project experimental distribution packaging and public boundary checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": ".github/workflows/synthetic.yml",
+      "size": 1661,
+      "sha256": "8eeba931d8505bf34d69a7031498c00af51654cd23cf7a4378ae420bb325f3ad",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": ".gitignore",
+      "size": 30,
+      "sha256": "de5200857beacc0a3634e9cfedb0c2a52105ea4266c90d09356a0a070fef4629",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "size": 1084,
+      "sha256": "90fe2c950023a81a89f482788c0536d28ffb8d79cca344cb5cb4da6296d4bae8",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "size": 2389,
+      "sha256": "d36059f18c592bef195f953f27d2ecd5cf17fbe702ec5ad9609abe0f687e0baa",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "LICENSES/LGPL-2.1-or-later.txt",
+      "size": 26419,
+      "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+      "origin": "GNU Lesser General Public License version 2.1, Free Software Foundation",
+      "license": "LicenseRef-License-Text"
+    },
+    {
+      "path": "NOTICE.md",
+      "size": 2153,
+      "sha256": "22b48f788f6b7430dec4d34a643ae5f1c984fb9a4317bb0cb257d304c72b9dcc",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "README.md",
+      "size": 5985,
+      "sha256": "a6fe46645007db78c10f8da20d64250aa3b378db8202d411d05c8d6f72e08799",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "README.zh-CN.md",
+      "size": 5306,
+      "sha256": "b7ecc15caa883a8f0fd5183ca30eedce21e84d00ed7a0a09cd1764efa3812c95",
+      "origin": "Project Simplified Chinese user documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "docs/RELEASING.md",
+      "size": 1654,
+      "sha256": "157325a7aa0e35c3eb38f9c0cb71aac6b492f961d000ae5001a80ffa38595fd0",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "docs/SUPPORT.md",
+      "size": 3395,
+      "sha256": "827d1a584c7481ecbface62c23df6bc8e49de5dad0c86154ac4347149dd62394",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "docs/TROUBLESHOOTING.md",
+      "size": 2565,
+      "sha256": "f2ea9ee345275bfd61377a2d7960198356a496d428d759263a0a03ecc8b4cca6",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "docs/UBUNTU.md",
+      "size": 7043,
+      "sha256": "50478f27f5aca2da81b3925fe73e298fa89d117b9a77948c32ac49097f628746",
+      "origin": "Project experimental Ubuntu build and test guide",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "driver/yamila.c",
+      "size": 16794,
+      "sha256": "d8666c5ba27c97a16a913814d8f8ab7e255209cc88e33d19274f54566f9aae21",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "driver/yamila_virtual.c",
+      "size": 110,
+      "sha256": "92cbe66c333d085681f4d59545f2a913c1b984c2788a5d5db7869ab206dc4957",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "native/engine_callback_fields.def.h",
+      "size": 1374,
+      "sha256": "183711489f52da444b8a152ff2b8acc54d2b726ef38e073f607222c87c5b1115",
+      "origin": "Project-authored worker, ABI layout and memory adapter; see NOTICE.md",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "native/engine_guard.c",
+      "size": 1283,
+      "sha256": "d96079527f8974ee6dfa246bf4f0c7537dffc40db0c8aeca09b1ad5d80dd8f1d",
+      "origin": "Project-authored worker, ABI layout and memory adapter; see NOTICE.md",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "native/memory_storage.h",
+      "size": 5437,
+      "sha256": "c1495b430ed604528199ed30ca270bbab83e958f602608b3fb1ff66fb578f59c",
+      "origin": "Project-authored worker, ABI layout and memory adapter; see NOTICE.md",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "native/native_abi.h",
+      "size": 791,
+      "sha256": "9670fd38e2d7947b9f25a1b2d65c5906f6f8f681c7c4baa7fabf05790ef31127",
+      "origin": "Project-authored worker, ABI layout and memory adapter; see NOTICE.md",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "native/native_loader.c",
+      "size": 31501,
+      "sha256": "732382246fbcb398e00f46ac0d3617e842c74ea86a452988366132d9779f9d5f",
+      "origin": "OMGrant/ft9201-libfprint src/ft_engine.c at fcf5499c6ddadf0d2a03be14b173609e760a7ec6, modified for Yamila",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "native/native_worker.c",
+      "size": 8386,
+      "sha256": "60af523c974835c8e453d70f0a71947ed03e54f3c5321f0c43b342dde06e5cd2",
+      "origin": "Project-authored worker, ABI layout and memory adapter; see NOTICE.md",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "native/winbio_compat.h",
+      "size": 2198,
+      "sha256": "3d70a21bc659edaf6e8dff4fac38157b3ecdaf426b6fa778c5f5bf97cbffdd68",
+      "origin": "Project-authored worker, ABI layout and memory adapter; see NOTICE.md",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/INSTALL.md",
+      "size": 8292,
+      "sha256": "479da75192be40c226ecfd4ab8147a04ea4df1210a7e91c771297bf4d9979703",
+      "origin": "Project Fedora build and recovery guide",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/debian/pam_integration.py",
+      "size": 8922,
+      "sha256": "0ad077fa0b70b0d264c44cf81ad4a5f5b170d7be111d03905392196ef1bb2b1d",
+      "origin": "Project Ubuntu PAM profile ownership integration and synthetic checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/debian/preflight.py",
+      "size": 7142,
+      "sha256": "1c964a601d2796423f7730e792e42310a608563ec7e5dbea4d18b957f08c25f9",
+      "origin": "Project experimental distribution packaging and public boundary checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/debian/test_pam_integration.py",
+      "size": 5081,
+      "sha256": "c2c3a7871ae7a6d30f4646ac3ded82d14c3b6cf3ae320af25e1ea787ffdb0b7b",
+      "origin": "Project Ubuntu PAM profile ownership integration and synthetic checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/debian/test_preflight.py",
+      "size": 3476,
+      "sha256": "faa38463b3932f0f036bd02c58bb6707dbe90b3960a849ef550c393d7658b000",
+      "origin": "Project experimental distribution packaging and public boundary checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/fedora44-build.lock.json",
+      "size": 785,
+      "sha256": "03057280f0d0fb87e8affe10ec8b2c604677ec5f96d13fbb7764cbcf322900a3",
+      "origin": "Project Fedora packaging and installation policy",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/files/20-yamila-libfprint.conf",
+      "size": 75,
+      "sha256": "bbd557a3df1523d3d49e63e8343e8279bd2695c7430e404e7d8980924444467b",
+      "origin": "Project Fedora packaging and installation policy",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/files/70-yamila-fprint.rules",
+      "size": 193,
+      "sha256": "55a8d36db7825762bce7159849050a0fcc24164874f0890f7ee8cc08ba201d08",
+      "origin": "Project Fedora packaging and installation policy",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/files/yamila-fprint.conf",
+      "size": 84,
+      "sha256": "1db337c14e6991e72dc4637c1d8370807f28b88f1208ecf2d5658a333eaaf3cf",
+      "origin": "Project Fedora packaging and installation policy",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/preflight.py",
+      "size": 6777,
+      "sha256": "33600e65bc9c155a0ecc061530d561ecec9ecfdec87b1a74a6a8102baf3ae982",
+      "origin": "Project Fedora packaging and installation policy",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/selinux/yamila_libfprint.te",
+      "size": 712,
+      "sha256": "e68f13c489e5025819e309902c19a04e45ebfbaadfdb3fe46adb88f13dbed8de",
+      "origin": "Project targeted SELinux integration and ownership checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/selinux_policy.py",
+      "size": 2984,
+      "sha256": "7f916173fff26986af7a944cbabe66de6a9d44ac0ad84eab3af24130bd5fa7c9",
+      "origin": "Project targeted SELinux integration and ownership checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/tests/rpm_lab.py",
+      "size": 7667,
+      "sha256": "0b210348e33fe7bf41e94d97a9199c503ff93932ae0c0a7c057ba35c84ad8290",
+      "origin": "Project isolated packaging checks with synthetic data",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/tests/test_preflight.py",
+      "size": 4630,
+      "sha256": "c64fc7e1ceeb1158f3cea2dada4584138592a822cf7c5c09a8e27512ecf80d16",
+      "origin": "Project isolated packaging checks with synthetic data",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/tests/test_selinux.py",
+      "size": 2550,
+      "sha256": "0ab0045aa5172de8a6fbd5402e3b735834369f4d2e7a91fa09c1e6b438ab9184",
+      "origin": "Project synthetic SELinux ownership boundaries",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "packaging/yamila-libfprint.spec.in",
+      "size": 5251,
+      "sha256": "5d0f0f841c365764f261f06eec171f698a9a8ac20700e84cc1bf7fe1e2fa081d",
+      "origin": "Project Fedora packaging and installation policy",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "public-files.json",
+      "size": 12270,
+      "sha256": "f3283da8da1d6497ea7df68ef8bc23bde0f0c85efa5b6ace4438de9dbf3c4e89",
+      "origin": "Project distribution allowlist",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "runtime/assets.py",
+      "size": 1370,
+      "sha256": "5f739d179da1461ee8cbe28f486d3da3a93cfd913ba9b11448c911a47b582b76",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "runtime/bridge.py",
+      "size": 6618,
+      "sha256": "84f7a6dd3b47348793a80e85588f92c0f3c3937c7bbd1f7acc1914f354c935ce",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "runtime/broker.py",
+      "size": 10279,
+      "sha256": "db5fb5846a8c584bc83aeff479abe29d12cae1880d354cf49bfba7cff50816be",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "runtime/native_bridge.py",
+      "size": 2420,
+      "sha256": "7a812d375e2962d94bad7077ca163729d2c952abb6f6bac3598a8a1d4df2ac24",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "runtime/protocol.py",
+      "size": 7418,
+      "sha256": "25936afde613e8d19778242d3a7621f6acb6762cc177a29c6ed4376c3afb1efd",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "runtime/usb_transport.py",
+      "size": 7520,
+      "sha256": "e611b915c05bfdc0c52eec3619fff4f740eb19437070bb4ed2bd7e3e98a9243b",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tests/test-yamila.c",
+      "size": 13356,
+      "sha256": "e5b91236ab3ddc2a149ed044dc8963a5d74406ed7e252a37569b41a3d956865f",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tests/test_assets.py",
+      "size": 2924,
+      "sha256": "4eaccdebadbd9b80ed2ee933f0a83e4d20b1e2867d2c63c349c0af8e141ab301",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tests/test_audit.py",
+      "size": 3557,
+      "sha256": "09d07449fc3ffbacaf268bce2f26dc3f60f92d8fd4b9e32980044b9c748c9432",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tests/test_pipeline.py",
+      "size": 8440,
+      "sha256": "7d69699f4d96c6ced1b789eb41a1408b4bcce209acfe0e4a799bdd92bdc1fcc1",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tests/test_privacy.py",
+      "size": 843,
+      "sha256": "4ea4e607f2629570ecc9694f0eb1fad0afd58ff608059c2480e757c286868421",
+      "origin": "Project experimental distribution packaging and public boundary checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tests/test_release.py",
+      "size": 1964,
+      "sha256": "2ea474162299c4b0eabada28364777c574fd91bb4b4652419d3eadcd1fa1f081",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/audit.py",
+      "size": 3447,
+      "sha256": "c4ccc5d775b5672fe758a9d50a5facada7c471667f948e32f76853425a5572c5",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/build.py",
+      "size": 7353,
+      "sha256": "ebbe28a465b3a6b9b24eb0b02897ff59a0690ea1de95e69a6487bf10ff7857d7",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/check.py",
+      "size": 2122,
+      "sha256": "44d9267fc5f6e8a17665d1f57ea70526e63fc9715e87cbe4a3ea18f51095d869",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/ci_packages.py",
+      "size": 2074,
+      "sha256": "33738c153f735ee379189c2214aa2434bf560bb3011f146687486a014b6cb44d",
+      "origin": "Project experimental distribution packaging and public boundary checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/deb.py",
+      "size": 8813,
+      "sha256": "6700e832d566499647a72ffe6b752ca0a433f1bdaa21f25c1ff522d80ed2b09f",
+      "origin": "Project experimental distribution packaging and public boundary checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/export.py",
+      "size": 871,
+      "sha256": "aef5ee085581ddf862067015df539bc0e27c057df4b457f7d0ad2c196813531f",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/fetch_upstream.py",
+      "size": 715,
+      "sha256": "3d7c73c807920851f5a88a7eb79f2b540971f01bd074db125b266246c77aed1e",
+      "origin": "Project experimental distribution packaging and public boundary checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/inspect_deb.py",
+      "size": 3995,
+      "sha256": "6e12cd21aed6c2e8408227eece5209be1ba03e5978397feee18b9466a2c21d1b",
+      "origin": "Project experimental distribution packaging and public boundary checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/inspect_rpm.py",
+      "size": 4512,
+      "sha256": "8624f5a6c394f1f04518e1cef080ae2ed596f0c04f85f234132e8d90b5585516",
+      "origin": "Project Fedora package inspection",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/privacy_check.py",
+      "size": 1514,
+      "sha256": "d086dec448ab64efde9f5e4d263337b056fe66a16f1b1cd5b93464bf1d3e84b3",
+      "origin": "Project experimental distribution packaging and public boundary checks",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/release_check.py",
+      "size": 2330,
+      "sha256": "0348f2c9ca559c21b51cc22caac7f67ffb372b7a0c4f921b1015715c7fc2acc9",
+      "origin": "Project public documentation, synthetic CI and publication-boundary validation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/rpm.py",
+      "size": 5480,
+      "sha256": "cba7319bcfd06da7ce7b2e4f22ac50b9295c0b2187031410f62b70e830a97170",
+      "origin": "Project Fedora packaging and installation policy",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "tools/stage.py",
+      "size": 3314,
+      "sha256": "3c7b056fe72bd42a3a637d7488e1f1dd2a3dab83bc261488d70958d82de1fd3c",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "upstream.lock.json",
+      "size": 445,
+      "sha256": "fa45759711cd74bfecca0310d06ab4ab106e2df7583189403255fc2c25465df0",
+      "origin": "Yamila community driver project source and documentation",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "vendor/LICENSE-NOTICE.md",
+      "size": 1022,
+      "sha256": "1c4d3b56d56a2398986b073b0b8b85ca08c9657bb28f4384ed9318c59f16bdf4",
+      "origin": "Project-authored vendor identity and distribution notice",
+      "license": "LGPL-2.1-or-later"
+    },
+    {
+      "path": "vendor/YmlWbioEngineAdapter.dll",
+      "size": 2867104,
+      "sha256": "f745baf9c94488473e98472a5e779c120abfa72a2058af3b9c61c80affc7a9c1",
+      "origin": "Yamila vendor engine binary, unchanged",
+      "license": "LicenseRef-Yamila-Vendor-Binary"
+    },
+    {
+      "path": "vendor/source.json",
+      "size": 878,
+      "sha256": "ef2cb212e64fb6027dffcc57beb6050120ff8fa78e938f9caf1af289d3997f94",
+      "origin": "Project-authored vendor identity and distribution notice",
+      "license": "LGPL-2.1-or-later"
+    }
+  ]
+}

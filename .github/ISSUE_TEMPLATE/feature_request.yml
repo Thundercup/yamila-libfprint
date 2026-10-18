@@ -1,0 +1,19 @@
+name: Support or feature request
+description: Describe the use case and current support gap without private samples.
+body:
+  - type: markdown
+    attributes:
+      value: 'A matching vendor ID alone is not compatibility evidence. Do not attach real fingerprint samples, templates, USB captures, keys or passwords.'
+  - type: input
+    id: target
+    attributes:
+      label: Hardware revision and operating system
+    validations:
+      required: true
+  - type: textarea
+    id: request
+    attributes:
+      label: Use case and requested behavior
+      description: Explain the gap in the current support matrix; distinguish assumptions from observations.
+    validations:
+      required: true

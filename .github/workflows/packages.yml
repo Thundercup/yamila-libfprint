@@ -1,0 +1,52 @@
+name: Build experimental packages
+'on':
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: packages-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  packages:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: fedora44
+            image: fedora:44
+          - platform: ubuntu2604
+            image: ubuntu:26.04
+    container: ${{ matrix.image }}
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Check out audited source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Prepare distribution dependencies and ordinary builder
+        shell: bash
+        run: |
+          if [ '${{ matrix.platform }}' = fedora44 ]; then
+            dnf install -y gcc gcc-c++ meson ninja-build pkgconf-pkg-config python3 glib2-devel libgusb-devel libusb1-devel json-glib-devel openssl-devel shadow-utils util-linux rpm-build redhat-rpm-config systemd-rpm-macros checkpolicy policycoreutils fprintd libfprint selinux-policy-targeted binutils bubblewrap cpio
+          else
+            apt-get update
+            DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends build-essential meson ninja-build pkg-config python3 libglib2.0-dev libgusb-dev libusb-1.0-0-dev libjson-glib-dev libssl-dev dpkg-dev binutils fprintd libfprint-2-2 libpam-fprintd systemd udev ca-certificates util-linux
+          fi
+          useradd --create-home --uid 1001 builder
+          chown -R builder:builder "$GITHUB_WORKSPACE"
+      - name: Audit and build without USB or service activation
+        run: |
+          runuser -u builder -- python3 -B tools/release_check.py
+          runuser -u builder -- python3 -B tools/ci_packages.py --platform '${{ matrix.platform }}' --output /tmp/yamila-artifacts
+      - name: Retain packages, corresponding sources and checksums
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: yamila-${{ matrix.platform }}-amd64-${{ github.sha }}
+          path: /tmp/yamila-artifacts/*
+          if-no-files-found: error
+          retention-days: 14

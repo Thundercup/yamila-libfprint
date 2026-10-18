@@ -1,0 +1,127 @@
+# SPDX-License-Identifier: LGPL-2.1-or-later
+%global debug_package %{nil}
+%global _build_id_links none
+%global __provides_exclude_from ^%{_libdir}/yamila-fprint/.*$
+# Explicit post creates the account only after the installation gate succeeds.
+%global __provides_exclude ^(user|group)[(]yamila-fprint[)].*$
+%global __brp_python_bytecompile %{nil}
+%global source_date_epoch_from_changelog 0
+%global use_source_date_epoch_as_buildtime 1
+%global clamp_mtime_to_source_date_epoch 1
+
+Name: yamila-libfprint
+Version: 0.0.1
+Release: @@RELEASE@@%{?dist}
+Summary: Development preview of the Yamila 2808:06fc libfprint backend
+License: LGPL-2.1-or-later AND NIST-PD AND LicenseRef-Yamila-Vendor-Binary
+Source0: yamila-libfprint-0.0.1.tar.gz
+Source1: libfprint-v1.94.100.tar.gz
+ExclusiveArch: x86_64
+@@BUILD_REQUIRES@@
+Requires: fedora-release-common >= 44
+Requires: fedora-release-common < 45
+Requires: fprintd(x86-64) = 1.94.5-5.fc44
+Requires: libfprint(x86-64) = 1.94.100-1.fc44
+Requires: python3
+Requires: selinux-policy-targeted = 44.11-1.fc44
+Requires(pre): python3, rpm
+Requires(post): systemd-sysusers, policycoreutils
+Requires(pre): policycoreutils
+Requires(preun): python3, policycoreutils
+Requires(posttrans): systemd, systemd-udev
+Requires(preun): systemd
+Requires(postun): systemd, systemd-udev
+
+%description
+Community development backend for USB 2808:06fc revision 2003 on Fedora 44
+x86_64. The patched library is private to fprintd and the fixed proprietary
+Yamila DLL is included. Native fprintd/hardware acceptance is incomplete.
+No PAM changes or template migration are performed.
+
+%prep
+%setup -q
+
+%build
+%set_build_flags
+export CFLAGS="$CFLAGS -ffile-prefix-map=$PWD=. -fdebug-prefix-map=$PWD=."
+export CXXFLAGS="$CXXFLAGS -ffile-prefix-map=$PWD=. -fdebug-prefix-map=$PWD=."
+python3 -B tools/build.py --upstream-archive %{SOURCE1} --libdir lib64/yamila-fprint
+checkmodule -M -m -o build/yamila_libfprint.mod packaging/selinux/yamila_libfprint.te
+semodule_package -o build/yamila_libfprint.pp -m build/yamila_libfprint.mod
+
+%install
+rm -rf %{buildroot}
+python3 -B tools/stage.py --destdir %{buildroot}
+install -Dm0644 build/yamila_libfprint.pp %{buildroot}%{_datadir}/selinux/packages/yamila_libfprint.pp
+install -Dm0644 packaging/selinux_policy.py %{buildroot}%{_libexecdir}/yamila-fprint/selinux_policy.py
+install -Dm0644 packaging/preflight.py %{buildroot}%{_libexecdir}/yamila-fprint/preflight.py
+install -Dm0644 packaging/files/20-yamila-libfprint.conf %{buildroot}%{_unitdir}/fprintd.service.d/20-yamila-libfprint.conf
+install -Dm0644 packaging/files/yamila-fprint.conf %{buildroot}%{_sysusersdir}/yamila-fprint.conf
+install -Dm0644 packaging/files/70-yamila-fprint.rules %{buildroot}%{_udevrulesdir}/70-yamila-fprint.rules
+rm %{buildroot}/stage-manifest.json
+
+%check
+python3 -I -B build/runtime/broker.py --check-assets
+
+%pre
+exec /usr/bin/python3 -I -B - <<'YAMILA_PREFLIGHT'
+@@PREFLIGHT@@
+result=inspect()
+if not result['compatible']:
+    print('Yamila installation refused: '+'; '.join(result['failures']),file=sys.stderr)
+    sys.exit(1)
+YAMILA_PREFLIGHT
+
+%post
+/usr/bin/systemd-sysusers /usr/lib/sysusers.d/yamila-fprint.conf
+/usr/bin/python3 -I -B /usr/libexec/yamila-fprint/selinux_policy.py install
+
+%posttrans
+if [ -d /run/systemd/system ]; then
+    /usr/bin/systemctl daemon-reload || :
+    /usr/bin/udevadm control --reload || :
+    /usr/bin/udevadm trigger --action=change --subsystem-match=usb --attr-match=idVendor=2808 --attr-match=idProduct=06fc --attr-match=bcdDevice=2003 || :
+    /usr/bin/systemctl try-restart fprintd.service || :
+fi
+
+%preun
+if [ "$1" -eq 0 ]; then
+    /usr/bin/python3 -I -B /usr/libexec/yamila-fprint/selinux_policy.py check || exit 1
+fi
+if [ "$1" -eq 0 ] && [ -d /run/systemd/system ]; then
+    /usr/bin/systemctl stop fprintd.service || :
+fi
+if [ "$1" -eq 0 ]; then
+    /usr/bin/python3 -I -B /usr/libexec/yamila-fprint/selinux_policy.py remove || exit 1
+fi
+
+%postun
+if [ "$1" -eq 0 ] && [ -d /run/systemd/system ]; then
+    /usr/bin/systemctl daemon-reload || :
+    /usr/bin/udevadm control --reload || :
+    /usr/bin/udevadm trigger --action=change --subsystem-match=usb --attr-match=idVendor=2808 --attr-match=idProduct=06fc --attr-match=bcdDevice=2003 || :
+fi
+# Account, standard FpPrints and any previous encrypted data are preserved.
+
+%files
+%license LICENSES/LGPL-2.1-or-later.txt vendor/LICENSE-NOTICE.md
+%doc %{_docdir}/yamila-libfprint/
+%{_libdir}/yamila-fprint/
+%{_libexecdir}/yamila-fprint/
+%{_datadir}/selinux/packages/yamila_libfprint.pp
+%config(noreplace) %{_unitdir}/fprintd.service.d/20-yamila-libfprint.conf
+%config(noreplace) %{_sysusersdir}/yamila-fprint.conf
+%config(noreplace) %{_udevrulesdir}/70-yamila-fprint.rules
+
+%changelog
+* Sun Oct 18 2026 Community Driver Maintainers - 0.0.1-10
+- Prepare initial community preview and bilingual public documentation.
+
+* Sun Oct 18 2026 Community Driver Maintainers - 0.0.1-9
+- Include experimental Ubuntu tooling, privacy checks and package CI sources.
+
+* Sun Oct 18 2026 Community Driver Maintainers - 0.0.1-8
+- Add confined anonymous image type, inherited core limits and no-image open check.
+
+* Sun Oct 18 2026 Community Driver Maintainers - 0.0.1-1
+- First isolated Fedora 44 development package; no hardware acceptance claim.

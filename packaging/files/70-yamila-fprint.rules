@@ -1,0 +1,1 @@
+ACTION=="add|change", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="2808", ATTR{idProduct}=="06fc", ATTR{bcdDevice}=="2003", TAG-="uaccess", GROUP="yamila-fprint", MODE="0660"

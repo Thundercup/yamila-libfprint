@@ -1,0 +1,56 @@
+name: Driver or installation problem
+description: Report a minimal non-biometric error and version tuple.
+title: '[Bug] '
+body:
+  - type: markdown
+    attributes:
+      value: 'Do not upload fingerprint images, templates, raw USB captures, keys, passwords or full system journals. Review excerpts for personal details.'
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Before reporting
+      options:
+        - label: I read the support matrix and will identify unsupported versions explicitly.
+          required: true
+        - label: My report contains no biometric data, credentials or unreviewed logs.
+          required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Distribution and package versions
+      description: Fedora release/architecture and yamila-libfprint, libfprint, fprintd, selinux-policy-targeted versions only.
+    validations:
+      required: true
+  - type: input
+    id: reader
+    attributes:
+      label: Reader VID/PID and hardware revision
+      placeholder: '2808:06fc / 0x2003'
+    validations:
+      required: true
+  - type: dropdown
+    id: operation
+    attributes:
+      label: Failing operation
+      options:
+        - Installation or package gate
+        - Device discovery or open
+        - Enrollment
+        - Verification or cancellation
+        - Specific desktop or PAM application
+        - Upgrade or removal
+        - Source build or synthetic CI
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction and expected result
+      description: Minimal steps, actual status/error, and which documented baseline differs. Do not repeat enrollment just to collect a report.
+    validations:
+      required: true
+  - type: textarea
+    id: excerpt
+    attributes:
+      label: Optional minimal reviewed error excerpt
+      description: A few relevant lines only. Omit usernames, hostnames, unrelated sessions and all biometric data.
