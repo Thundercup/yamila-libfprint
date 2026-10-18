@@ -14,7 +14,8 @@ These commands do not capture images or read templates. An inactive fprintd can 
 
 | Symptom | Next check |
 | --- | --- |
-| Installation refused | Compare exact versions and conflicting unit/drop-in/USB rules; inspect the reported file. Do not force over unknown integration or use --nodeps. |
+| Untested version warning | Testing may proceed if actual dependencies and configuration checks pass. Report the system/package versions and results. |
+| Installation refused | Version differences only warn; inspect missing runtime dependencies and conflicting unit/drop-in/USB rules or modified files. Do not force over unknown integration or use --nodeps. |
 | Package verification prints differences | Review the changed file; preserve intentional administrator changes before upgrade/removal. Do not blindly replace them. |
 | Reader is absent | Confirm VID/PID/revision and the RPM rule/account; other readers are not enabled in this preview. |
 | Device open fails before a touch | The driver performs a no-image DLL self-check during open. Check service errors and administrator-reviewed SELinux denials before requesting another finger. |

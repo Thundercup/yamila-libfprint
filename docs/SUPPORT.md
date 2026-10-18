@@ -4,14 +4,14 @@ The supported reader is **USB 2808:06fc, bcdDevice 0x2003**. Only x86_64/amd64 i
 
 | Area | Scope | Evidence |
 | --- | --- | --- |
-| Fedora baseline | Fedora 44, libfprint 1.94.100-1.fc44, fprintd 1.94.5-5.fc44, targeted SELinux policy 44.11-1.fc44 | Native development package tested; exact dependency gate |
+| Fedora baseline | Fedora 44, libfprint 1.94.100-1.fc44, fprintd 1.94.5-5.fc44, targeted SELinux policy 44.11-1.fc44 | Native development package tested; version differences warn and allow testing |
 | Fedora enrollment/persistence | Native FpPrint enrollment and daemon restart/reload | Passed on one device |
 | Fedora verification | Enrolled finger match; one unenrolled-finger rejection | Passed; no accuracy estimate |
 | Fedora lifecycle | Waiting-stage cancellation/recovery, exclusive clients, release/handoff, disconnected-owner recovery | Passed |
 | Fedora authentication | Uncached sudo fingerprint and no-touch password fallback | Passed |
 | Fedora desktop | KDE management, lockscreen and administrator authorization | Reported working |
 | Hardening | Dedicated worker account, empty supplementary groups, zero effective capabilities, NNP/MDWE, core=0; Fedora SELinux Enforcing | Checked in finite test windows |
-| Ubuntu baseline | Ubuntu 26.04 amd64, exact fprintd/libfprint versions and native unit digest recorded per build | Package baseline and integrity checked on reported installation |
+| Ubuntu baseline | Ubuntu 26.04 amd64, exact fprintd/libfprint versions and native unit digest recorded per build | Build provenance, not an installation whitelist; version/unit differences warn |
 | Ubuntu desktop | GNOME fingerprint setup and lockscreen | Reported working |
 | Ubuntu authentication | sudo fingerprint, Polkit fingerprint, no-touch password fallback after enabling the distro PAM profile | Remote test report passed; existing Unix/SSS chain retained |
 | Ubuntu automatic setup | Initial enable, idempotent reinstall, legacy upgrade/downgrade, preexisting preference, administrator edits, abort-remove recovery | Eight rootless-container transaction scenarios passed; new public-package installation on hardware not yet accepted |
@@ -20,6 +20,8 @@ The supported reader is **USB 2808:06fc, bcdDevice 0x2003**. Only x86_64/amd64 i
 | Clean-system lifecycle | Booted clean-system install/upgrade/downgrade/removal, service triggers and MAC labels | Not fully validated |
 | CI | Synthetic checks and Fedora/Ubuntu package builds | See the repository Actions runs for the exact commit; CI does not test hardware |
 | Signing | Development packages | Unsigned; SHA256SUMS is provided |
+
+Other x86_64 distribution versions and derivatives are welcome for community testing. Build baselines are not installation whitelists: OS/package version differences and Ubuntu native-unit digest differences only warn. Actual shared-library dependencies, required packages, architecture and configuration-conflict checks still apply. Report both successful and failed tests with distribution, package versions and device revision.
 
 The private library registers only this Yamila driver. Other readers/revisions, identify, on-device storage, cross-finger duplicate detection, boot-login acceptance, image-transfer interruption, unplug/suspend/resume, multiple users/seats and long-term reliability are not claimed.
 

@@ -45,8 +45,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "size": 1084,
-      "sha256": "90fe2c950023a81a89f482788c0536d28ffb8d79cca344cb5cb4da6296d4bae8",
+      "size": 1654,
+      "sha256": "7dee361d7964aab160b3575eedcd0974dee3ab965d6f0976f142cfa1c605d9a3",
       "origin": "Project public documentation, synthetic CI and publication-boundary validation",
       "license": "LGPL-2.1-or-later"
     },
@@ -73,43 +73,43 @@
     },
     {
       "path": "README.md",
-      "size": 5985,
-      "sha256": "a6fe46645007db78c10f8da20d64250aa3b378db8202d411d05c8d6f72e08799",
+      "size": 6488,
+      "sha256": "110081d718321125a25bdb15bf74b127340decc74f1a9edfd138a7479786a94f",
       "origin": "Yamila community driver project source and documentation",
       "license": "LGPL-2.1-or-later"
     },
     {
       "path": "README.zh-CN.md",
-      "size": 5306,
-      "sha256": "b7ecc15caa883a8f0fd5183ca30eedce21e84d00ed7a0a09cd1764efa3812c95",
+      "size": 5727,
+      "sha256": "b87199583bb6fed2d389284c7060dfd0ed20ef4b51d0aa989e5bda4f8fe7f5c6",
       "origin": "Project Simplified Chinese user documentation",
       "license": "LGPL-2.1-or-later"
     },
     {
       "path": "docs/RELEASING.md",
-      "size": 1654,
-      "sha256": "157325a7aa0e35c3eb38f9c0cb71aac6b492f961d000ae5001a80ffa38595fd0",
+      "size": 1696,
+      "sha256": "29da1c7270e35da5858de191be4cb5b113b0a5f296c4587c4dd1f4142b0e8fcc",
       "origin": "Project public documentation, synthetic CI and publication-boundary validation",
       "license": "LGPL-2.1-or-later"
     },
     {
       "path": "docs/SUPPORT.md",
-      "size": 3395,
-      "sha256": "827d1a584c7481ecbface62c23df6bc8e49de5dad0c86154ac4347149dd62394",
+      "size": 3863,
+      "sha256": "5e212941a19beb704a77ebb1fe158b6691848dc6205a5301f9161ae4af3c8991",
       "origin": "Project public documentation, synthetic CI and publication-boundary validation",
       "license": "LGPL-2.1-or-later"
     },
     {
       "path": "docs/TROUBLESHOOTING.md",
-      "size": 2565,
-      "sha256": "f2ea9ee345275bfd61377a2d7960198356a496d428d759263a0a03ecc8b4cca6",
+      "size": 2754,
+      "sha256": "d3b056efbe68294bcc6cc3132a3774a94b1f33c4606e4e477fa6d4c64185674a",
       "origin": "Project public documentation, synthetic CI and publication-boundary validation",
       "license": "LGPL-2.1-or-later"
     },
     {
       "path": "docs/UBUNTU.md",
-      "size": 7043,
-      "sha256": "50478f27f5aca2da81b3925fe73e298fa89d117b9a77948c32ac49097f628746",
+      "size": 7504,
+      "sha256": "11b611f52c6af6094377e8ebf9be7c32fa8bece3e376b1b738686734afb20fee",
       "origin": "Project experimental Ubuntu build and test guide",
       "license": "LGPL-2.1-or-later"
     },
@@ -178,8 +178,8 @@
     },
     {
       "path": "packaging/INSTALL.md",
-      "size": 8292,
-      "sha256": "479da75192be40c226ecfd4ab8147a04ea4df1210a7e91c771297bf4d9979703",
+      "size": 8740,
+      "sha256": "dd900dd75e7e205bd343c06dfc591a54c70ac0c2bc402874ceacfcd48e5dae6c",
       "origin": "Project Fedora build and recovery guide",
       "license": "LGPL-2.1-or-later"
     },
@@ -192,8 +192,8 @@
     },
     {
       "path": "packaging/debian/preflight.py",
-      "size": 7142,
-      "sha256": "1c964a601d2796423f7730e792e42310a608563ec7e5dbea4d18b957f08c25f9",
+      "size": 7380,
+      "sha256": "bf2f7d7f8575302a0a488da7d0045a7a633585da7a6bcfdffc7a330f0a1ab634",
       "origin": "Project experimental distribution packaging and public boundary checks",
       "license": "LGPL-2.1-or-later"
     },
@@ -206,8 +206,8 @@
     },
     {
       "path": "packaging/debian/test_preflight.py",
-      "size": 3476,
-      "sha256": "faa38463b3932f0f036bd02c58bb6707dbe90b3960a849ef550c393d7658b000",
+      "size": 4617,
+      "sha256": "509da4784eef6bfcd8a09cd8c57fee31882694bdaa56204dd990c9d5b02f6358",
       "origin": "Project experimental distribution packaging and public boundary checks",
       "license": "LGPL-2.1-or-later"
     },
@@ -241,8 +241,8 @@
     },
     {
       "path": "packaging/preflight.py",
-      "size": 6777,
-      "sha256": "33600e65bc9c155a0ecc061530d561ecec9ecfdec87b1a74a6a8102baf3ae982",
+      "size": 6958,
+      "sha256": "15473ddedf2b286f5b612c8434fdbecda20f2ae6baec199e5aa955e0c6bd537e",
       "origin": "Project Fedora packaging and installation policy",
       "license": "LGPL-2.1-or-later"
     },
@@ -269,8 +269,8 @@
     },
     {
       "path": "packaging/tests/test_preflight.py",
-      "size": 4630,
-      "sha256": "c64fc7e1ceeb1158f3cea2dada4584138592a822cf7c5c09a8e27512ecf80d16",
+      "size": 5509,
+      "sha256": "f5deba29cf13952333396ba88632b40bf464db5277c720b2e0dc0a083e520aa6",
       "origin": "Project isolated packaging checks with synthetic data",
       "license": "LGPL-2.1-or-later"
     },
@@ -283,8 +283,8 @@
     },
     {
       "path": "packaging/yamila-libfprint.spec.in",
-      "size": 5251,
-      "sha256": "5d0f0f841c365764f261f06eec171f698a9a8ac20700e84cc1bf7fe1e2fa081d",
+      "size": 5365,
+      "sha256": "fa3a0081d4f56618668ad1bb3c79e204a774428e59f71c573a70602d0c00b9af",
       "origin": "Project Fedora packaging and installation policy",
       "license": "LGPL-2.1-or-later"
     },
@@ -403,14 +403,14 @@
     {
       "path": "tools/ci_packages.py",
       "size": 2074,
-      "sha256": "33738c153f735ee379189c2214aa2434bf560bb3011f146687486a014b6cb44d",
+      "sha256": "695aebb592fc8c07e76408216b67dd9d9dc34d18488fa9683b94b75aa8f6071e",
       "origin": "Project experimental distribution packaging and public boundary checks",
       "license": "LGPL-2.1-or-later"
     },
     {
       "path": "tools/deb.py",
-      "size": 8813,
-      "sha256": "6700e832d566499647a72ffe6b752ca0a433f1bdaa21f25c1ff522d80ed2b09f",
+      "size": 8825,
+      "sha256": "cb1e9a18af06ed939407eb737d3796ef073adf1778719dd0039b8ddb89f29c1f",
       "origin": "Project experimental distribution packaging and public boundary checks",
       "license": "LGPL-2.1-or-later"
     },
@@ -459,7 +459,7 @@
     {
       "path": "tools/rpm.py",
       "size": 5480,
-      "sha256": "cba7319bcfd06da7ce7b2e4f22ac50b9295c0b2187031410f62b70e830a97170",
+      "sha256": "56670c593e77e740ab671f469dadcf21eea60ca15e9078d3359b2815fa2e09b0",
       "origin": "Project Fedora packaging and installation policy",
       "license": "LGPL-2.1-or-later"
     },

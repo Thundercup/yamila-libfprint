@@ -24,7 +24,7 @@ def main():
     checked_archive(archive,json.loads((ROOT/'upstream.lock.json').read_text()))
     if a.platform=='fedora44':
         work=Path('/tmp/yamila-rpmbuild')
-        run('python3','-B',ROOT/'tools/rpm.py','--upstream-archive',archive,'--workdir',work,'--release','10','--container-build')
+        run('python3','-B',ROOT/'tools/rpm.py','--upstream-archive',archive,'--workdir',work,'--release','11','--container-build')
         artifacts=[*work.glob('RPMS/**/*.rpm'),*work.glob('SRPMS/*.rpm'),work/'SOURCES/yamila-libfprint-0.0.1.tar.gz']
         for item in work.glob('RPMS/**/*.rpm'):run('python3','-B',ROOT/'tools/inspect_rpm.py',item)
     else:

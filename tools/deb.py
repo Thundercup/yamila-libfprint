@@ -24,7 +24,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--upstream-archive',type=Path,required=True)
     p.add_argument('--workdir',type=Path,default=ROOT/'build/deb')
-    p.add_argument('--revision',default='3')
+    p.add_argument('--revision',default='4')
     a=p.parse_args();audit()
     if os.geteuid()==0:p.error('build as an ordinary user')
     if text(['dpkg','--print-architecture'])!='amd64':p.error('only amd64 is supported')
@@ -57,11 +57,11 @@ def main():
     for file in elf:run(['strip','--strip-unneeded',file])
     deps=subprocess.check_output(['dpkg-shlibdeps','-O',*['-e'+str(x) for x in elf]],cwd=work,text=True).strip()
     if not deps.startswith('shlibs:Depends='):raise ValueError('cannot resolve ELF dependencies')
-    deps=deps.removeprefix('shlibs:Depends=')+', python3, systemd, udev, libusb-1.0-0, libpam-runtime, libpam-fprintd (= '+baseline['packages']['fprintd']+'), '+', '.join(name+' (= '+v+')' for name,v in baseline['packages'].items())
+    deps=deps.removeprefix('shlibs:Depends=')+', python3, systemd, udev, libusb-1.0-0, libpam-runtime, libpam-fprintd, fprintd, libfprint-2-2'
     control=stage/'DEBIAN';control.mkdir()
     (control/'control').write_text('Package: yamila-libfprint\nVersion: '+version+'\nArchitecture: amd64\nMaintainer: Yamila Community Maintainers <noreply@example.invalid>\nSection: admin\nPriority: optional\nPre-Depends: python3\nDepends: '+deps+'\nDescription: Experimental Yamila 2808:06fc native fprintd backend\n Includes the fixed proprietary vendor algorithm; limited user hardware feedback.\n Enables the distro fingerprint PAM profile while preserving password fallback.\n No template migration or global libfprint replacement.\n')
     code=helper.read_text().split("if __name__=='__main__':",1)[0]
-    (control/'preinst').write_text("#!/bin/sh\nset -eu\ncase \"$1\" in install|upgrade) python3 -I -B - <<'YAMILA_GATE'\n"+code+'\nresult=inspect('+repr(baseline)+")\nif not result['compatible']:\n print('Yamila installation refused: '+'; '.join(result['failures']),file=sys.stderr)\n sys.exit(1)\nYAMILA_GATE\n;; esac\n")
+    (control/'preinst').write_text("#!/bin/sh\nset -eu\ncase \"$1\" in install|upgrade) python3 -I -B - <<'YAMILA_GATE'\n"+code+'\nresult=inspect('+repr(baseline)+")\nfor warning in result['warnings']:\n print('Yamila compatibility warning: '+warning,file=sys.stderr)\nif not result['compatible']:\n print('Yamila installation refused: '+'; '.join(result['failures']),file=sys.stderr)\n sys.exit(1)\nYAMILA_GATE\n;; esac\n")
     refresh='''if [ -d /run/systemd/system ]; then
  systemctl daemon-reload
  udevadm control --reload

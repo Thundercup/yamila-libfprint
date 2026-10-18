@@ -17,12 +17,12 @@ class UbuntuGateTests(unittest.TestCase):
         self.write('/etc/group','root:x:0:\n')
         self.write('/usr/lib/systemd/system/fprintd.service','synthetic unit')
         self.baseline={'packages':{'fprintd':'1.2','libfprint-2-2':'3.4'},'unit_sha256':hashlib.sha256(b'synthetic unit').hexdigest()}
-        self.installed=False;self.modified=False;self.owned=False
+        self.installed=False;self.modified=False;self.owned=False;self.versions={}
     def tearDown(self):self.tmp.cleanup()
     def write(self,name,data):
         p=self.root/name.lstrip('/');p.parent.mkdir(parents=True,exist_ok=True);p.write_text(data)
     def query(self,root,operation,value):
-        if operation=='version':return (0,self.baseline['packages'][value])
+        if operation=='version':return self.versions.get(value,(0,self.baseline['packages'][value]))
         if operation=='status':return (0,'install ok installed') if self.installed else (1,'')
         if operation=='owner':return (0,PACKAGE+': '+value) if self.owned else (1,'')
         if operation=='verify':return (0,'modified') if self.modified else (0,'')
@@ -30,9 +30,26 @@ class UbuntuGateTests(unittest.TestCase):
     def result(self):return inspect(self.baseline,self.root,self.query)
     def test_clean(self):self.assertTrue(self.result()['compatible'])
     def test_wrong_distribution(self):
-        self.write('/etc/os-release','ID=ubuntu\nVERSION_ID=24.04\n');self.assertFalse(self.result()['compatible'])
+        self.write('/etc/os-release','ID=ubuntu\nVERSION_ID=24.04\n')
+        self.assertTrue(self.result()['compatible']);self.assertTrue(self.result()['warnings'])
     def test_changed_native_unit(self):
-        self.write('/usr/lib/systemd/system/fprintd.service','changed');self.assertFalse(self.result()['compatible'])
+        self.write('/usr/lib/systemd/system/fprintd.service','changed')
+        self.assertTrue(self.result()['compatible']);self.assertTrue(self.result()['warnings'])
+    def test_derivative_can_test(self):
+        self.write('/etc/os-release','ID=linuxmint\nVERSION_ID=22\n')
+        self.assertTrue(self.result()['compatible']);self.assertTrue(self.result()['warnings'])
+    def test_changed_dependency_warns(self):
+        self.versions={'fprintd':(0,'2.0'),'libfprint-2-2':(0,'4.0')}
+        result=self.result();self.assertTrue(result['compatible']);self.assertEqual(len(result['warnings']),2)
+    def test_missing_dependency_rejected(self):
+        self.versions={'fprintd':(1,'')};self.assertFalse(self.result()['compatible'])
+    def test_missing_unit_rejected(self):
+        (self.root/'usr/lib/systemd/system/fprintd.service').unlink()
+        self.assertFalse(self.result()['compatible'])
+    def test_warning_does_not_bypass_custom_unit(self):
+        self.versions={'fprintd':(0,'2.0')}
+        self.write('/etc/systemd/system/fprintd.service','override')
+        self.assertFalse(self.result()['compatible']);self.assertTrue(self.result()['warnings'])
     def test_custom_unit(self):
         self.write('/etc/systemd/system/fprintd.service','override');self.assertFalse(self.result()['compatible'])
     def test_unknown_vendor_dropin(self):

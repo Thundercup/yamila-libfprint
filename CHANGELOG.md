@@ -1,5 +1,12 @@
 # Change log
 
+## 0.0.1-preview.2 — 2026-10-18
+
+- Welcome community testing on other x86_64 distribution releases and derivatives; build/test baselines are no longer installation whitelists.
+- Replace OS/package-version and Ubuntu native-unit digest refusal with visible compatibility warnings.
+- Remove exact runtime version pins while retaining generated ELF dependencies, required packages, architecture and integration/conflict checks. Build inputs remain pinned for reproducibility.
+- Fedora package revision 11; Ubuntu package revision 4. No new hardware-compatibility claim.
+
 ## 0.0.1-preview.1 — 2026-10-18
 
 - Initial community preview for USB 2808:06fc revision 0x2003 on Fedora 44 x86_64 and Ubuntu 26.04 amd64.

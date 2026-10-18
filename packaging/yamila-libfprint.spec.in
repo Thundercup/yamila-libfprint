@@ -18,12 +18,10 @@ Source0: yamila-libfprint-0.0.1.tar.gz
 Source1: libfprint-v1.94.100.tar.gz
 ExclusiveArch: x86_64
 @@BUILD_REQUIRES@@
-Requires: fedora-release-common >= 44
-Requires: fedora-release-common < 45
-Requires: fprintd(x86-64) = 1.94.5-5.fc44
-Requires: libfprint(x86-64) = 1.94.100-1.fc44
+Requires: fprintd(x86-64)
+Requires: libfprint(x86-64)
 Requires: python3
-Requires: selinux-policy-targeted = 44.11-1.fc44
+Requires: selinux-policy-targeted
 Requires(pre): python3, rpm
 Requires(post): systemd-sysusers, policycoreutils
 Requires(pre): policycoreutils
@@ -67,6 +65,8 @@ python3 -I -B build/runtime/broker.py --check-assets
 exec /usr/bin/python3 -I -B - <<'YAMILA_PREFLIGHT'
 @@PREFLIGHT@@
 result=inspect()
+for warning in result['warnings']:
+    print('Yamila compatibility warning: '+warning,file=sys.stderr)
 if not result['compatible']:
     print('Yamila installation refused: '+'; '.join(result['failures']),file=sys.stderr)
     sys.exit(1)
@@ -114,6 +114,9 @@ fi
 %config(noreplace) %{_udevrulesdir}/70-yamila-fprint.rules
 
 %changelog
+* Sun Oct 18 2026 Community Driver Maintainers - 0.0.1-11
+- Allow untested distribution/package versions with compatibility warnings.
+
 * Sun Oct 18 2026 Community Driver Maintainers - 0.0.1-10
 - Prepare initial community preview and bilingual public documentation.
 

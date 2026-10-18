@@ -12,6 +12,6 @@ Release packages are experimental and unsigned. Publish their matching source in
 
 ## Describe
 
-Document supported systems/architectures, exact baseline requirements, package versions, unsigned status, automatic Ubuntu PAM behavior, opt-out/removal policy and unverified scenarios. Link the actual Actions runs and matching commit. State whether results were synthetic, container-based or hardware tests.
+Document supported systems/architectures, build/test baselines, runtime dependencies and compatibility warnings, package versions, unsigned status, automatic Ubuntu PAM behavior, opt-out/removal policy and unverified scenarios. Link the actual Actions runs and matching commit. State whether results were synthetic, container-based or hardware tests.
 
 Checksums identify bytes; they do not establish a signing identity. A future signed repository must document key distribution and rotation without asking users to disable verification globally.

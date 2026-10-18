@@ -1,6 +1,6 @@
 # Fedora development RPM
 
-Target: Fedora 44 x86_64, USB 2808:06fc / revision 0x2003. The initial package requires **libfprint 1.94.100-1.fc44, fprintd 1.94.5-5.fc44 and targeted SELinux policy 44.11-1.fc44**. An unvalidated update is refused rather than silently using a different baseline. This is an unsigned development artifact. Independent signed-RPM userspace builds, actual native-service hardening/SELinux and limited hardware checks have passed on one existing machine: enrollment/reload, waiting cancellation/recovery, one positive/negative verification and sudo/password fallback. Final-package clean-system installation/upgrade/downgrade/removal is not fully validated. See the [support matrix](../docs/SUPPORT.md); this is not broad installation or production acceptance.
+Target: Fedora 44 x86_64, USB 2808:06fc / revision 0x2003. The recorded build/test baseline is **libfprint 1.94.100-1.fc44, fprintd 1.94.5-5.fc44 and targeted SELinux policy 44.11-1.fc44**. Other x86_64 Fedora releases, compatible RPM distributions and dependency updates are welcome for testing. OS/package-version differences warn rather than block installation. Required packages and automatically generated shared-library dependencies still apply; an older system may require a source build. This is an unsigned development artifact. Independent signed-RPM userspace builds, actual native-service hardening/SELinux and limited hardware checks have passed on one existing machine: enrollment/reload, waiting cancellation/recovery, one positive/negative verification and sudo/password fallback. Final-package clean-system installation/upgrade/downgrade/removal is not fully validated. See the [support matrix](../docs/SUPPORT.md); this is not broad installation or production acceptance.
 
 ## Package layout
 
@@ -18,7 +18,7 @@ Run as an ordinary user with bubblewrap and the exact development packages in `f
 python3 -B tools/audit.py
 python3 -B tools/rpm.py --upstream-archive /path/to/libfprint-v1.94.100.tar.gz \
     --workdir build/rpm
-python3 -B tools/inspect_rpm.py build/rpm/RPMS/x86_64/yamila-libfprint-0.0.1-10.fc44.x86_64.rpm
+python3 -B tools/inspect_rpm.py build/rpm/RPMS/x86_64/yamila-libfprint-0.0.1-11.fc44.x86_64.rpm
 ```
 
 The builder uses bubblewrap to expose its writable work directory at a fixed build path and keeps host inputs read-only. This is a mount sandbox over the host, not a clean Fedora image. RPM 6 embeds expanded spec paths in the source-RPM header, so the fixed path is needed even when ELF payloads already match. The build also fixes `SOURCE_DATE_EPOCH`, build-host metadata, source tar ownership/order/timestamps and source-path maps. Native workers honor the Fedora compiler/linker flags. Staging uses Meson's install copy to remove build-only RUNPATH before RPM processing. The private library does not provide the global `libfprint-2.so.2` RPM capability.
@@ -33,14 +33,14 @@ Read-only inspection, with no service activation, USB access or biometric reads:
 python3 -I -B packaging/preflight.py
 ```
 
-The package embeds the same gate in its pre-install script. It refuses unsupported versions, full/custom/masked fprintd units, unknown drop-ins, local Yamila USB rules, unknown private-runtime files, modified installed package files and incompatible account/group definitions. It does not remove another gateway, overwrite unknown administrator configuration or migrate templates. Modified managed integration files are also protected by RPM's config preservation rules.
+The package embeds the same gate in its pre-install script. It warns about untested OS/package versions and refuses full/custom/masked fprintd units, unknown drop-ins, local Yamila USB rules, unknown private-runtime files, modified installed package files and incompatible account/group definitions. It does not remove another gateway, overwrite unknown administrator configuration or migrate templates. Modified managed integration files are also protected by RPM's config preservation rules.
 
 If another Yamila gateway is installed, keep its recovery package and matching maintenance tool before any migration. Use that distribution's documented uninstall/restore process and check its result first. Never force this package over the other gateway or use `--nodeps` to bypass runtime checks. On an existing working setup, migration requires a separate acceptance window and a concrete restore plan.
 
 For a separately prepared, compatible test system, verify the RPM checksum and review `tools/inspect_rpm.py` output before running the finite administrative transaction:
 
 ```sh
-pkexec /usr/bin/dnf install /absolute/path/yamila-libfprint-0.0.1-10.fc44.x86_64.rpm
+pkexec /usr/bin/dnf install /absolute/path/yamila-libfprint-0.0.1-11.fc44.x86_64.rpm
 ```
 
 These development artifacts are unsigned; a checksum is not a signing identity. Release downloads include SHA256SUMS; a signed package repository is not currently provided. Installing adds the account/rule/drop-in, reloads relevant configuration, applies the rule to the exact USB target and restarts fprintd only if it is already running. Installing this preview does not prove fingerprint login or password fallback.
@@ -57,7 +57,7 @@ pkexec /usr/bin/dnf remove yamila-libfprint
 
 Uninstall stops native fprintd, removes only package-owned integration/runtime, reloads configuration and returns subsequent native-daemon activation to the distribution library. Modified integration files may be saved with `.rpmsave`. The dedicated account, fprintd template data and any previous encrypted data are retained. The package does not delete users, templates, keys or other distributions' recovery assets. To restore a previous custom gateway, first remove this RPM, then use that gateway's own retained installer and recovery guide; do not combine both active integrations.
 
-For read-only package integrity inspection use `rpm -V yamila-libfprint`. After a supported package-baseline update the community package and its lock need a deliberate rebuild/validation; there is no automatic ABI compatibility promise.
+For read-only package integrity inspection use `rpm -V yamila-libfprint`. Distribution updates are permitted without rebuilding solely to match version strings. Record compatibility warnings and test results; rebuild on the target system when real shared-library dependencies require it. The pinned source/build lock remains a reproducibility input, not a runtime version whitelist. There is no automatic ABI compatibility promise.
 
 ## Isolated checks
 

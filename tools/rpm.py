@@ -19,7 +19,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--upstream-archive',type=Path,required=True)
     parser.add_argument('--workdir',type=Path,default=ROOT/'build/rpm')
-    parser.add_argument('--release',default='10')
+    parser.add_argument('--release',default='11')
     parser.add_argument('--local-headers',type=Path,help='explicit local development pkg-config directory')
     parser.add_argument('--allow-missing-build-deps',action='store_true',help='development-only: mark rpmbuild --nodeps; not a clean build')
     parser.add_argument('--container-build',action='store_true',help='ordinary-user build in an already isolated container, at /tmp/yamila-rpmbuild only')

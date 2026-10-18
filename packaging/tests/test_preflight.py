@@ -33,9 +33,23 @@ class PreflightTests(unittest.TestCase):
         result=self.result();self.assertFalse(result['compatible']);self.assertTrue(any(substring in s for s in result['failures']),result)
     def test_clean_supported_gate(self):self.assertTrue(self.result()['compatible'])
     def test_unsupported_library_version(self):
-        self.version_override['libfprint']='1.95.0-1.fc44';self.assert_rejected('unsupported libfprint')
+        self.version_override['libfprint']='1.95.0-1.fc44'
+        result=self.result();self.assertTrue(result['compatible']);self.assertTrue(any('libfprint' in w for w in result['warnings']))
     def test_unsupported_os(self):
-        self.write('/etc/os-release','ID=fedora\nVERSION_ID=45\n');self.assert_rejected('Fedora 44')
+        self.write('/etc/os-release','ID=fedora\nVERSION_ID=45\n')
+        result=self.result();self.assertTrue(result['compatible']);self.assertTrue(result['warnings'])
+    def test_derivative_can_test(self):
+        self.write('/etc/os-release','ID=rocky\nVERSION_ID=10\n')
+        self.assertTrue(self.result()['compatible']);self.assertTrue(self.result()['warnings'])
+    def test_missing_runtime_dependency_rejected(self):
+        original=self.query
+        self.query=lambda root,*args:(1,'') if args[-1]=='fprintd' else original(root,*args)
+        self.assert_rejected('required package is missing')
+    def test_version_warning_does_not_bypass_conflicts(self):
+        self.version_override['fprintd']='2.0-1.fc45'
+        self.write('/etc/systemd/system/fprintd.service','custom')
+        self.assert_rejected('custom or masked')
+        self.assertTrue(self.result()['warnings'])
     def test_old_gateway_is_rejected(self):
         self.write('/etc/systemd/system/fprintd.service.d/90-yamila-desktop.conf','[Service]\nExecStart=/old/gateway\n');self.assert_rejected('unknown fprintd drop-in')
     def test_mask_is_rejected(self):

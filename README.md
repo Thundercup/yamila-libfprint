@@ -14,14 +14,16 @@ An experimental community driver for **Yamila USB fingerprint readers with VID:P
 
 This is a **community preview**, not a production support guarantee. Other readers, revisions, ARM platforms, identify, cross-finger duplicate detection and boot-login acceptance are outside the current scope.
 
-## Supported packages
+## Build and test baselines
 
 | System | Architecture | Package | Authentication integration |
 | --- | --- | --- | --- |
 | Ubuntu 26.04 | amd64 | DEB | Automatically enables the distribution fingerprint PAM profile on first configuration; preserves password authentication and administrator choices |
 | Fedora 44 | x86_64 | RPM / SRPM | Private library and package-owned SELinux policy; existing PAM/authselect configuration is retained |
 
-Packages enforce a specific distribution baseline. The Fedora build requires libfprint `1.94.100-1.fc44`, fprintd `1.94.5-5.fc44` and targeted SELinux policy `44.11-1.fc44`. Each Ubuntu build records its exact native package versions and service-unit digest in `build-record.json`. Unsupported baselines and conflicting configurations are refused; do not bypass dependency checks.
+These are build and test baselines, not an installation whitelist. Other x86_64 distribution releases, derivatives and fprintd/libfprint updates are welcome for community testing. Starting with preview.2, differing OS/package versions and Ubuntu native-service digests produce compatibility warnings, not installation refusal. Build records retain the exact inputs for reproducibility.
+
+The package manager still checks actual shared-library and required-package dependencies. A binary built on a newer system may require newer libraries; build from source on the target system if those dependencies are unavailable. Architecture limits, conflicting driver installations, modified managed files and unsupported confinement configurations remain installation checks. Successful installation does not establish runtime compatibility; report your system/version tuple and results.
 
 Limited hardware validation includes Fedora enrollment, persistence, match/rejection, cancellation, sudo/password fallback and reported KDE management/lockscreen/administrator authentication. Ubuntu reports cover GNOME setup/lockscreen and sudo, Polkit and password fallback after enabling the distribution PAM profile. Automatic DEB setup/removal has container transaction coverage; integrated installation of the new public package on hardware is not yet accepted. See [the detailed matrix](docs/SUPPORT.md).
 
@@ -32,7 +34,7 @@ Download the appropriate package and `SHA256SUMS` from [Releases](https://github
 ### Ubuntu 26.04
 
 ```sh
-sudo apt install ./yamila-libfprint_0.0.1-3ubuntu26.04_amd64.deb
+sudo apt install ./yamila-libfprint_0.0.1-4ubuntu26.04_amd64.deb
 sudo dpkg --verify yamila-libfprint
 ```
 
@@ -47,7 +49,7 @@ See [Ubuntu installation, rollback and removal](docs/UBUNTU.md).
 ### Fedora 44
 
 ```sh
-sudo dnf install ./yamila-libfprint-0.0.1-10.fc44.x86_64.rpm
+sudo dnf install ./yamila-libfprint-0.0.1-11.fc44.x86_64.rpm
 rpm -V yamila-libfprint
 ```
 

@@ -27,19 +27,20 @@ def query_rpm(root, *args):
 
 def inspect(root=Path('/'), query=query_rpm):
     root = Path(root)
-    failures=[]
+    failures=[];warnings=[]
     installed=query(root,'-q',PACKAGE)[0]==0
     def path(name):return root/name.lstrip('/')
     def reject(message):failures.append(message)
     os_release=path('/etc/os-release')
     try:
         release=dict(line.split('=',1) for line in os_release.read_text().splitlines() if '=' in line)
-        if release.get('ID','').strip('"')!='fedora' or release.get('VERSION_ID','').strip('"')!='44':reject('supported OS is Fedora 44')
-    except OSError:reject('cannot read OS identity')
+        if release.get('ID','').strip('"')!='fedora' or release.get('VERSION_ID','').strip('"')!='44':warnings.append('untested OS release; build baseline is Fedora 44')
+    except OSError:warnings.append('cannot read OS identity; compatibility is unverified')
     if os.uname().machine!='x86_64':reject('supported architecture is x86_64')
     for name,version in VERSIONS.items():
         code,value=query(root,'-q','--queryformat',chr(37)+'{VERSION}-'+chr(37)+'{RELEASE}',name)
-        if code or value!=version:reject('unsupported '+name+' version; expected '+version)
+        if code:reject('required package is missing: '+name)
+        elif value!=version:warnings.append('untested '+name+' version '+value+'; build baseline is '+version)
     for base in ('/etc/systemd/system','/run/systemd/system','/usr/local/lib/systemd/system'):
         unit=path(base+'/fprintd.service')
         if unit.exists() or unit.is_symlink():reject('custom or masked fprintd unit: '+base+'/fprintd.service')
@@ -101,7 +102,7 @@ def inspect(root=Path('/'), query=query_rpm):
         code,owner=query(root,'-qf','--queryformat',chr(37)+'{NAME}',str(POLICY_PATH))
         if policy_file.is_symlink() or code or owner!=PACKAGE:reject('unknown SELinux package policy file')
     failures.extend(policy_errors(root))
-    return dict(compatible=not failures, failures=failures, expected_versions=VERSIONS,
+    return dict(compatible=not failures, failures=failures, warnings=warnings, expected_versions=VERSIONS,
                 changes_performed=False, biometric_data_read=False)
 
 

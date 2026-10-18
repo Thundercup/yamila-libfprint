@@ -11,14 +11,16 @@
 
 当前版本是**社区测试版**。其他设备型号/修订、ARM、identify、跨手指重复录入检测和开机登录尚不在已验收范围内。
 
-## 支持范围
+## 构建与测试基线
 
 | 系统 | 架构 | 软件包 | 认证接入 |
 | --- | --- | --- | --- |
 | Ubuntu 26.04 | amd64 | DEB | 首次配置时自动启用发行版指纹 PAM profile，保留密码认证及管理员后续选择 |
 | Fedora 44 | x86_64 | RPM / SRPM | 私有库、专用账户及自有 SELinux 策略；保留现有 PAM/authselect 配置 |
 
-软件包有明确的依赖和配置门禁，并非适用于任意版本的通用安装包。Fedora 当前要求 libfprint `1.94.100-1.fc44`、fprintd `1.94.5-5.fc44`、selinux-policy-targeted `44.11-1.fc44`。Ubuntu 每次构建的精确依赖版本及原生服务摘要记录在 `build-record.json`。版本不符或发现冲突配置时会拒绝安装，不应绕过门禁。
+表中列的是构建和测试基线，不是安装白名单。欢迎在其他 x86_64 系统版本、衍生发行版及更新的 fprintd/libfprint 上自行测试并反馈。从 preview.2 起，系统版本、依赖包版本或 Ubuntu 原生服务摘要与构建基线不同，只会提示兼容性尚未验证，不再据此拒绝安装。精确构建输入仍记录在构建记录中，便于复现。
+
+包管理器仍会检查实际动态库及必需软件包依赖。新系统构建的二进制可能需要较新的动态库；目标系统无法满足时，可在该系统从源码构建。CPU 架构限制、旧驱动冲突、已修改的受管文件及尚未适配的安全配置仍会检查。安装成功不代表运行已验证，反馈时请附系统、包版本及测试结果。
 
 已有有限实测：Fedora 录入、模板重载、匹配/异指拒绝、取消恢复、sudo 指纹/密码回退，以及 KDE 管理、锁屏和管理员授权反馈；Ubuntu GNOME 设置/锁屏及启用发行版 PAM profile 后的 sudo、Polkit 和密码回退反馈。DEB 自动配置/移除已有容器事务验证，新公开包的完整实机安装流程仍待验收。完整状态见[支持矩阵](docs/SUPPORT.md)。
 
@@ -31,7 +33,7 @@
 在下载目录执行：
 
 ```sh
-sudo apt install ./yamila-libfprint_0.0.1-3ubuntu26.04_amd64.deb
+sudo apt install ./yamila-libfprint_0.0.1-4ubuntu26.04_amd64.deb
 sudo dpkg --verify yamila-libfprint
 ```
 
@@ -48,7 +50,7 @@ sudo pam-auth-update --disable fprintd
 ### Fedora 44
 
 ```sh
-sudo dnf install ./yamila-libfprint-0.0.1-10.fc44.x86_64.rpm
+sudo dnf install ./yamila-libfprint-0.0.1-11.fc44.x86_64.rpm
 rpm -V yamila-libfprint
 ```
 

@@ -33,21 +33,23 @@ def query_dpkg(root, operation, value):
 
 
 def inspect(baseline, root=Path('/'), query=query_dpkg):
-    root=Path(root);errors=[]
+    root=Path(root);errors=[];warnings=[]
     def path(name):return root/name.lstrip('/')
     def reject(message):errors.append(message)
     status_code,status=query(root,'status',PACKAGE)
     installed=status_code==0 and status.split()[-1:] == ['installed']
     try:
         release=dict(s.split('=',1) for s in path('/etc/os-release').read_text().splitlines() if '=' in s)
-        if release.get('ID','').strip('"')!='ubuntu' or release.get('VERSION_ID','').strip('"')!='26.04':reject('supported OS is Ubuntu 26.04')
-    except OSError:reject('cannot read OS identity')
+        if release.get('ID','').strip('"')!='ubuntu' or release.get('VERSION_ID','').strip('"')!='26.04':warnings.append('untested OS release; build baseline is Ubuntu 26.04')
+    except OSError:warnings.append('cannot read OS identity; compatibility is unverified')
     if os.uname().machine!='x86_64':reject('supported architecture is amd64')
     for name,version in baseline['packages'].items():
-        if query(root,'version',name)!=(0,version):reject('unsupported '+name+' version; rebuild for the installed baseline')
+        code,value=query(root,'version',name)
+        if code:reject('required package is missing: '+name)
+        elif value!=version:warnings.append('untested '+name+' version '+value+'; build baseline is '+version)
     unit=path('/usr/lib/systemd/system/fprintd.service')
     try:
-        if hashlib.sha256(unit.read_bytes()).hexdigest()!=baseline['unit_sha256']:reject('distribution fprintd unit differs from build baseline')
+        if hashlib.sha256(unit.read_bytes()).hexdigest()!=baseline['unit_sha256']:warnings.append('distribution fprintd unit differs from build baseline; runtime compatibility is unverified')
     except OSError:reject('missing distribution fprintd unit')
     for base in ('/etc/systemd/system','/run/systemd/system','/usr/local/lib/systemd/system'):
         p=path(base+'/fprintd.service')
@@ -103,7 +105,7 @@ def inspect(baseline, root=Path('/'), query=query_dpkg):
         try:
             if enforce.read_text().strip()=='1':reject('Ubuntu SELinux integration is not implemented')
         except OSError:reject('cannot inspect SELinux mode')
-    return dict(compatible=not errors,failures=errors,changes_performed=False,biometric_data_read=False)
+    return dict(compatible=not errors,failures=errors,warnings=warnings,changes_performed=False,biometric_data_read=False)
 
 
 if __name__=='__main__':
