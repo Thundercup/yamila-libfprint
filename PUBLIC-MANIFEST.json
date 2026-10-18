@@ -73,15 +73,15 @@
     },
     {
       "path": "README.md",
-      "size": 6488,
-      "sha256": "110081d718321125a25bdb15bf74b127340decc74f1a9edfd138a7479786a94f",
+      "size": 5295,
+      "sha256": "80e117588f9e913d4271d565ed6f35acc56d2d28c8215b7d7b725924f2331d95",
       "origin": "Yamila community driver project source and documentation",
       "license": "LGPL-2.1-or-later"
     },
     {
       "path": "README.zh-CN.md",
-      "size": 5727,
-      "sha256": "b87199583bb6fed2d389284c7060dfd0ed20ef4b51d0aa989e5bda4f8fe7f5c6",
+      "size": 4677,
+      "sha256": "8a2b2b4b1a925e835e15447e93cb076acfb28b914c7b1a8ec4b55cc5b8836532",
       "origin": "Project Simplified Chinese user documentation",
       "license": "LGPL-2.1-or-later"
     },

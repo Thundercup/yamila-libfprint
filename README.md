@@ -14,18 +14,14 @@ An experimental community driver for **Yamila USB fingerprint readers with VID:P
 
 This is a **community preview**, not a production support guarantee. Other readers, revisions, ARM platforms, identify, cross-finger duplicate detection and boot-login acceptance are outside the current scope.
 
-## Build and test baselines
+## Platforms and packages
 
 | System | Architecture | Package | Authentication integration |
 | --- | --- | --- | --- |
 | Ubuntu 26.04 | amd64 | DEB | Automatically enables the distribution fingerprint PAM profile on first configuration; preserves password authentication and administrator choices |
 | Fedora 44 | x86_64 | RPM / SRPM | Private library and package-owned SELinux policy; existing PAM/authselect configuration is retained |
 
-These are build and test baselines, not an installation whitelist. Other x86_64 distribution releases, derivatives and fprintd/libfprint updates are welcome for community testing. Starting with preview.2, differing OS/package versions and Ubuntu native-service digests produce compatibility warnings, not installation refusal. Build records retain the exact inputs for reproducibility.
-
-The package manager still checks actual shared-library and required-package dependencies. A binary built on a newer system may require newer libraries; build from source on the target system if those dependencies are unavailable. Architecture limits, conflicting driver installations, modified managed files and unsupported confinement configurations remain installation checks. Successful installation does not establish runtime compatibility; report your system/version tuple and results.
-
-Limited hardware validation includes Fedora enrollment, persistence, match/rejection, cancellation, sudo/password fallback and reported KDE management/lockscreen/administrator authentication. Ubuntu reports cover GNOME setup/lockscreen and sudo, Polkit and password fallback after enabling the distribution PAM profile. Automatic DEB setup/removal has container transaction coverage; integrated installation of the new public package on hardware is not yet accepted. See [the detailed matrix](docs/SUPPORT.md).
+Limited functional testing has been performed on Fedora 44 and Ubuntu 26.04. See the [support matrix](docs/SUPPORT.md) for results. Compatibility reports from other x86_64 distributions are welcome.
 
 ## Install
 
