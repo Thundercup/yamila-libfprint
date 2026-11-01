@@ -55,8 +55,9 @@ class BuildDependencyTests(unittest.TestCase):
         self.assertEqual(build_requirements(lock), lock['build_requires'])
         def query(args, **kwargs):
             self.assertEqual(args[-1], 'gcc')
-            return '16.2.1-3.fc44'
-        self.assertEqual(build_requirements(lock, True, query), {'gcc': '16.2.1-3.fc44'})
+            self.assertIn('%{EPOCHNUM}:%{VERSION}-%{RELEASE}', args)
+            return '1:16.2.1-3.fc44'
+        self.assertEqual(build_requirements(lock, True, query), {'gcc': '1:16.2.1-3.fc44'})
         self.assertEqual(lock['build_requires']['gcc'], '16.2.1-2.fc44')
         with self.assertRaises(ValueError):
             build_requirements(lock, True, lambda *a, **k: 'bad\nversion')

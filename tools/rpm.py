@@ -19,7 +19,7 @@ def build_requirements(lock, current=False, query=subprocess.check_output):
     versions = dict(lock['build_requires'])
     if current:
         for name in versions:
-            value = query(['rpm', '-q', '--queryformat', '%{VERSION}-%{RELEASE}', name], text=True).strip()
+            value = query(['rpm', '-q', '--queryformat', '%{EPOCHNUM}:%{VERSION}-%{RELEASE}', name], text=True).strip()
             if not re.fullmatch(r'[A-Za-z0-9._+~^:-]+', value):
                 raise ValueError('invalid installed build dependency version: ' + name)
             versions[name] = value
