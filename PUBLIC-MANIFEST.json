@@ -374,8 +374,8 @@
     },
     {
       "path": "tests/test_release.py",
-      "size": 1964,
-      "sha256": "2ea474162299c4b0eabada28364777c574fd91bb4b4652419d3eadcd1fa1f081",
+      "size": 2648,
+      "sha256": "7e705f938f3914820d75323949ae72288b60033c02cec7b46a9258d1a5c8bb93",
       "origin": "Project public documentation, synthetic CI and publication-boundary validation",
       "license": "LGPL-2.1-or-later"
     },
@@ -402,8 +402,8 @@
     },
     {
       "path": "tools/ci_packages.py",
-      "size": 2074,
-      "sha256": "695aebb592fc8c07e76408216b67dd9d9dc34d18488fa9683b94b75aa8f6071e",
+      "size": 2097,
+      "sha256": "2721ae8021e34875fabe5b456258d3bbc96b10735223eb32446135e9968fd602",
       "origin": "Project experimental distribution packaging and public boundary checks",
       "license": "LGPL-2.1-or-later"
     },
@@ -458,8 +458,8 @@
     },
     {
       "path": "tools/rpm.py",
-      "size": 5480,
-      "sha256": "56670c593e77e740ab671f469dadcf21eea60ca15e9078d3359b2815fa2e09b0",
+      "size": 6294,
+      "sha256": "bd63d8011b96a7f3327ce2346df36253291e45a2c263d5f6c5304ee00d241aaf",
       "origin": "Project Fedora packaging and installation policy",
       "license": "LGPL-2.1-or-later"
     },

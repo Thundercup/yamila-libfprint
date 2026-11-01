@@ -48,5 +48,19 @@ class ReleaseLinkTests(unittest.TestCase):
             check_links(self.root)
 
 
+class BuildDependencyTests(unittest.TestCase):
+    def test_locked_and_current_dependency_versions(self):
+        from rpm import build_requirements
+        lock = {'build_requires': {'gcc': '16.2.1-2.fc44'}}
+        self.assertEqual(build_requirements(lock), lock['build_requires'])
+        def query(args, **kwargs):
+            self.assertEqual(args[-1], 'gcc')
+            return '16.2.1-3.fc44'
+        self.assertEqual(build_requirements(lock, True, query), {'gcc': '16.2.1-3.fc44'})
+        self.assertEqual(lock['build_requires']['gcc'], '16.2.1-2.fc44')
+        with self.assertRaises(ValueError):
+            build_requirements(lock, True, lambda *a, **k: 'bad\nversion')
+
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)

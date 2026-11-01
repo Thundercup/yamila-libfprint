@@ -15,6 +15,17 @@ import tarfile
 from audit import ROOT,audit
 
 
+def build_requirements(lock, current=False, query=subprocess.check_output):
+    versions = dict(lock['build_requires'])
+    if current:
+        for name in versions:
+            value = query(['rpm', '-q', '--queryformat', '%{VERSION}-%{RELEASE}', name], text=True).strip()
+            if not re.fullmatch(r'[A-Za-z0-9._+~^:-]+', value):
+                raise ValueError('invalid installed build dependency version: ' + name)
+            versions[name] = value
+    return versions
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--upstream-archive',type=Path,required=True)
@@ -23,6 +34,7 @@ def main():
     parser.add_argument('--local-headers',type=Path,help='explicit local development pkg-config directory')
     parser.add_argument('--allow-missing-build-deps',action='store_true',help='development-only: mark rpmbuild --nodeps; not a clean build')
     parser.add_argument('--container-build',action='store_true',help='ordinary-user build in an already isolated container, at /tmp/yamila-rpmbuild only')
+    parser.add_argument('--current-build-deps',action='store_true',help='record and require installed build dependency versions instead of the historical lock')
     args=parser.parse_args()
     if not re.fullmatch('[1-9][0-9]*',args.release):parser.error('release must be a positive integer')
     if args.allow_missing_build_deps and not args.local_headers:parser.error('the development override requires explicit --local-headers')
@@ -50,7 +62,8 @@ def main():
     policy=(ROOT/'packaging/selinux_policy.py').read_text().split("if __name__=='__main__':",1)[0]
     preflight=preflight.replace('from selinux_policy import policy_errors, POLICY_PATH',policy)
     spec=(ROOT/'packaging/yamila-libfprint.spec.in').read_text().replace('@@RELEASE@@',args.release).replace('@@PREFLIGHT@@',preflight)
-    requirements='\n'.join('BuildRequires: '+name+' = '+version for name,version in lock['build_requires'].items())
+    resolved_requirements=build_requirements(lock,args.current_build_deps)
+    requirements='\n'.join('BuildRequires: '+name+' = '+version for name,version in resolved_requirements.items())
     spec=spec.replace('@@BUILD_REQUIRES@@',requirements)
     specpath=work/'SPECS/yamila-libfprint.spec';specpath.write_text(spec)
     env={**os.environ,'SOURCE_DATE_EPOCH':str(epoch),'TZ':'UTC','LC_ALL':'C.UTF-8'}
@@ -74,6 +87,7 @@ def main():
     for package in sorted([*(work/'RPMS').rglob('*.rpm'),*(work/'SRPMS').rglob('*.rpm')]):
         records.append(dict(file=str(package.relative_to(work)),sha256=hashlib.sha256(package.read_bytes()).hexdigest(),size=package.stat().st_size))
     (work/'build-record.json').write_text(json.dumps(dict(schema=1,artifacts=records,source_date_epoch=epoch,
+       build_requires=resolved_requirements,current_build_dependencies=args.current_build_deps,
        development_dependency_override=args.allow_missing_build_deps,container_build=args.container_build,fixed_build_path=fixed,clean_environment=False,upstream_sha256=upstream['sha256'],source_sha256=hashlib.sha256(source.read_bytes()).hexdigest()),indent=2)+'\n')
     print(json.dumps(records,indent=2))
 
