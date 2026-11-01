@@ -87,6 +87,8 @@ def inspect(root=Path('/'), query=query_rpm):
     passwd=path('/etc/passwd')
     group=path('/etc/group')
     if passwd.exists():
+        all_users=[line.split(':') for line in passwd.read_text().splitlines()]
+        all_groups=[line.split(':') for line in group.read_text().splitlines()] if group.exists() else []
         entries=[line.split(':') for line in passwd.read_text().splitlines() if line.startswith('yamila-fprint:')]
         groups=[line.split(':') for line in group.read_text().splitlines() if line.startswith('yamila-fprint:')] if group.exists() else []
         if len(entries)>1:reject('duplicate yamila-fprint account')
@@ -94,6 +96,8 @@ def inspect(root=Path('/'), query=query_rpm):
             row=entries[0]
             try:
                 if len(row)!=7 or int(row[2])<=0 or int(row[3])<=0 or row[5]!='/var/empty' or row[6]!='/usr/sbin/nologin':raise ValueError()
+                if any(u[0]!='yamila-fprint' and (u[2]==row[2] or u[3]==row[3]) for u in all_users):raise ValueError()
+                if any('yamila-fprint' in g[3].split(',') for g in all_groups):raise ValueError()
                 if len(groups)!=1 or groups[0][2]!=row[3] or groups[0][3]:raise ValueError()
             except (ValueError,IndexError):reject('existing yamila-fprint account/group is incompatible')
         elif groups:reject('pre-existing yamila-fprint group without account')

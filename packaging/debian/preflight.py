@@ -91,7 +91,7 @@ def inspect(baseline, root=Path('/'), query=query_dpkg):
         own=[x for x in users if x[0]=='yamila-fprint'];group=[x for x in groups if x[0]=='yamila-fprint']
         if own:
             u=own[0]
-            if len(own)!=1 or len(group)!=1 or len(u)!=7 or int(u[2])<=0 or int(u[3])<=0 or u[5:]!=['/var/empty','/usr/sbin/nologin'] or group[0][2]!=u[3] or group[0][3] or any(x[0]!='yamila-fprint' and x[3]==u[3] for x in users) or any('yamila-fprint' in x[3].split(',') for x in groups):reject('incompatible existing worker account/group')
+            if len(own)!=1 or len(group)!=1 or len(u)!=7 or int(u[2])<=0 or int(u[3])<=0 or u[5:]!=['/var/empty','/usr/sbin/nologin'] or group[0][2]!=u[3] or group[0][3] or any(x[0]!='yamila-fprint' and (x[2]==u[2] or x[3]==u[3]) for x in users) or any('yamila-fprint' in x[3].split(',') for x in groups):reject('incompatible existing worker account/group')
         elif group:reject('worker group without account')
     except (OSError,ValueError,IndexError):reject('cannot validate dedicated account')
     # Do not silently weaken a separately confined daemon or enable SELinux policy.

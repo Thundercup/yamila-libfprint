@@ -58,6 +58,7 @@ static unsigned call_count(const char*name){for(unsigned i=0;i<traces;i++)if(!st
 int main(int argc,char **argv) {
     struct rlimit core={0,0}, inherited_core;
     if(geteuid()==0)return 77;
+    if(prctl(PR_SET_DUMPABLE,0))return 78;
     if(getrlimit(RLIMIT_CORE,&inherited_core) ||
        ((inherited_core.rlim_cur || inherited_core.rlim_max) && setrlimit(RLIMIT_CORE,&core)))return 3;
     PWINBIO_ENGINE_INTERFACE table=NULL;

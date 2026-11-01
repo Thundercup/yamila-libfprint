@@ -15,13 +15,17 @@ class USBError(Exception):
     pass
 
 
-def inspect_devices():
+def inspect_devices(bus_filter=None, address_filter=None):
     found = []
     for path in sorted(Path('/sys/bus/usb/devices').glob('*')):
         try:
             if (path/'idVendor').read_text().strip() != '2808' or (path/'idProduct').read_text().strip() != '06fc':
                 continue
             bus, address = (int((path/k).read_text()) for k in ('busnum', 'devnum'))
+            if bus_filter is not None and bus != bus_filter:
+                continue
+            if address_filter is not None and address != address_filter:
+                continue
             descriptors = (path/'descriptors').read_bytes()
             if len(descriptors)<18 or descriptors[:2]!=b'\x12\x01':
                 raise USBError('invalid device descriptor')

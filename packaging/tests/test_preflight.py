@@ -82,6 +82,12 @@ class PreflightTests(unittest.TestCase):
     def test_persistent_system_account_is_accepted(self):
         self.write('/etc/passwd','yamila-fprint:x:973:973::/var/empty:/usr/sbin/nologin\n')
         self.write('/etc/group','yamila-fprint:x:973:\n');self.assertTrue(self.result()['compatible'])
+    def test_shared_worker_identity_rejected(self):
+        for uid,gid in ((973,1000),(1000,973)):
+            self.write('/etc/passwd',f'yamila-fprint:x:973:973::/var/empty:/usr/sbin/nologin\nother:x:{uid}:{gid}::/nonexistent:/bin/false\n')
+            self.write('/etc/group','yamila-fprint:x:973:\n')
+            self.assert_rejected('incompatible')
+
     def test_generated_configs_match_gate(self):
         for name,text in FILES.items():self.assertEqual((ROOT/'packaging/files'/Path(name).name).read_text(),text)
 

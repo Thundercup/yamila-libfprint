@@ -21,6 +21,7 @@
 #include <sys/syscall.h>
 #include <asm/prctl.h>
 #include <sys/stat.h>
+#include <sys/prctl.h>
 #include <errno.h>
 #include <time.h>
 #include <pthread.h>
@@ -131,7 +132,7 @@ static void* MS sh_GetModuleHandleW(void*n){native_trace("sh_GetModuleHandleW");
 static void* MS sh_GetModuleHandleA(void*n){native_trace("sh_GetModuleHandleA"); return (void*)g_image; }
 static int  MS sh_GetModuleHandleExW(u32 f,void*n,void**h){native_trace("sh_GetModuleHandleExW"); if(h)*h=(void*)g_image; return 1; }
 static u32  MS sh_GetModuleFileNameA(void*m,char*b,u32 n){native_trace("sh_GetModuleFileNameA"); strncpy(b,g_dllpath,n); return strlen(g_dllpath); }
-static u32  MS sh_GetModuleFileNameW(void*m,u16*b,u32 n){native_trace("sh_GetModuleFileNameW"); u32 i=0; for(;g_dllpath[i]&&i<n-1;i++) b[i]=g_dllpath[i]; b[i]=0; return i; }
+static u32  MS sh_GetModuleFileNameW(void*m,u16*b,u32 n){native_trace("sh_GetModuleFileNameW"); if(!n||!b){g_lasterr=87;return 0;} u32 i=0; for(;g_dllpath[i]&&i<n-1;i++) b[i]=g_dllpath[i]; b[i]=0; return i; }
 static void* MS sh_LoadLibraryExW(void*n,void*h,u32 f){
   native_trace("sh_LoadLibraryExW");char name[200]={0};if(!n||h||(f!=0&&f!=0x800))unsupported("LoadLibraryExW arguments");
   for(int i=0;i<199&&((u16*)n)[i];i++){if(((u16*)n)[i]>127)unsupported("LoadLibraryExW non-ASCII");name[i]=((u16*)n)[i];}

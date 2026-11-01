@@ -223,7 +223,7 @@ def main():
                 (directory / 'worker.pid').write_text(str(worker_pid))
                 (directory / 'broker.pid').write_text(str(os.getpid()))
         else:
-            devices = [d for d in inspect_devices() if d['bus'] == args.bus and d['address'] == args.address]
+            devices = [d for d in inspect_devices(args.bus, args.address) if d['bus'] == args.bus and d['address'] == args.address]
             if len(devices) != 1:
                 raise ValueError('USB identity changed')
             channel = USBTransport(devices[0])

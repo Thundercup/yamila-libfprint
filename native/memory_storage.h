@@ -47,7 +47,7 @@ static HRESULT WINAPI mem_add(PWINBIO_PIPELINE p,TEST_RECORD *r) {
                  (unsigned long long)r->TemplateBlobSize,(unsigned long long)r->IndexElementCount,
                  (unsigned long long)r->PayloadBlobSize);
     if(record_present || !r || !r->Identity || !r->TemplateBlob || !r->TemplateBlobSize ||
-       r->TemplateBlobSize>16*1024*1024 || r->IndexElementCount>4096 || r->PayloadBlobSize>1024*1024 ||
+       r->TemplateBlobSize>2*1024*1024 || r->IndexElementCount>4096 || r->PayloadBlobSize>1024*1024 ||
        (r->IndexElementCount && !r->IndexVector) || (r->PayloadBlobSize && !r->PayloadBlob)) return E_INVALIDARG;
     stored=*r; stored_id=*r->Identity; stored.Identity=&stored_id;
     stored.TemplateBlob=malloc(r->TemplateBlobSize);
