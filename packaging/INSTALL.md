@@ -18,7 +18,7 @@ Run as an ordinary user with bubblewrap and the exact development packages in `f
 python3 -B tools/audit.py
 python3 -B tools/rpm.py --upstream-archive /path/to/libfprint-v1.94.100.tar.gz \
     --workdir build/rpm
-python3 -B tools/inspect_rpm.py build/rpm/RPMS/x86_64/yamila-libfprint-0.0.1-11.fc44.x86_64.rpm
+python3 -B tools/inspect_rpm.py build/rpm/RPMS/x86_64/yamila-libfprint-0.0.1-12.fc44.x86_64.rpm
 ```
 
 The builder uses bubblewrap to expose its writable work directory at a fixed build path and keeps host inputs read-only. This is a mount sandbox over the host, not a clean Fedora image. RPM 6 embeds expanded spec paths in the source-RPM header, so the fixed path is needed even when ELF payloads already match. The build also fixes `SOURCE_DATE_EPOCH`, build-host metadata, source tar ownership/order/timestamps and source-path maps. Native workers honor the Fedora compiler/linker flags. Staging uses Meson's install copy to remove build-only RUNPATH before RPM processing. The private library does not provide the global `libfprint-2.so.2` RPM capability.
@@ -40,7 +40,7 @@ If another Yamila gateway is installed, keep its recovery package and matching m
 For a separately prepared, compatible test system, verify the RPM checksum and review `tools/inspect_rpm.py` output before running the finite administrative transaction:
 
 ```sh
-pkexec /usr/bin/dnf install /absolute/path/yamila-libfprint-0.0.1-11.fc44.x86_64.rpm
+pkexec /usr/bin/dnf install /absolute/path/yamila-libfprint-0.0.1-12.fc44.x86_64.rpm
 ```
 
 These development artifacts are unsigned; a checksum is not a signing identity. Release downloads include SHA256SUMS; a signed package repository is not currently provided. Installing adds the account/rule/drop-in, reloads relevant configuration, applies the rule to the exact USB target and restarts fprintd only if it is already running. Installing this preview does not prove fingerprint login or password fallback.

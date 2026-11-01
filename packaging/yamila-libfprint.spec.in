@@ -114,6 +114,9 @@ fi
 %config(noreplace) %{_udevrulesdir}/70-yamila-fprint.rules
 
 %changelog
+* Sun Nov 01 2026 Community Driver Maintainers - 0.0.1-12
+- Harden worker isolation, native bounds and target USB selection.
+
 * Sun Oct 18 2026 Community Driver Maintainers - 0.0.1-11
 - Allow untested distribution/package versions with compatibility warnings.
 

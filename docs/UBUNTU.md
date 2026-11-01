@@ -18,7 +18,7 @@ python3 -B tools/audit.py
 python3 -B tools/privacy_check.py
 python3 -B tools/fetch_upstream.py --dest /tmp/libfprint-upstream.tar.gz
 python3 -B tools/deb.py --upstream-archive /tmp/libfprint-upstream.tar.gz --workdir /tmp/new-yamila-deb
-python3 -B tools/inspect_deb.py /tmp/new-yamila-deb/yamila-libfprint_0.0.1-4ubuntu26.04_amd64.deb
+python3 -B tools/inspect_deb.py /tmp/new-yamila-deb/yamila-libfprint_0.0.1-5ubuntu26.04_amd64.deb
 ```
 
 The work directory must be new. Retain the DEB, project source archive, full pinned upstream source archive and build-record.json together. The overlay plus upstream archive is the corresponding source; the proprietary DLL remains subject to its separate notice. The recorded baseline contains exact installed libfprint/fprintd versions and the native service unit digest for build provenance, not an exact-version installation requirement. Runtime package dependencies are unpinned; generated ELF dependencies still apply. Older systems may need a source build if their libraries cannot satisfy the downloadable binary. Currently observed: libfprint-2-2 `1:1.95.1+tod1-0ubuntu2`, fprintd `1.94.5-4`. A package rebuilt after distribution updates may record a different baseline; that is a new experimental build, not new hardware validation.
@@ -54,7 +54,7 @@ This preference survives reconfiguration. To enable it again explicitly, use `su
 Installation enables fingerprint authentication in managed common-auth, may restart an already active fprintd and changes access to this reader. Do it outside any active authentication session:
 
 ```sh
-sudo apt install ./yamila-libfprint_0.0.1-4ubuntu26.04_amd64.deb
+sudo apt install ./yamila-libfprint_0.0.1-5ubuntu26.04_amd64.deb
 sudo dpkg --verify yamila-libfprint
 ```
 

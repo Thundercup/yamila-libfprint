@@ -30,7 +30,7 @@ Download the appropriate package and `SHA256SUMS` from [Releases](https://github
 ### Ubuntu 26.04
 
 ```sh
-sudo apt install ./yamila-libfprint_0.0.1-4ubuntu26.04_amd64.deb
+sudo apt install ./yamila-libfprint_0.0.1-5ubuntu26.04_amd64.deb
 sudo dpkg --verify yamila-libfprint
 ```
 
@@ -45,7 +45,7 @@ See [Ubuntu installation, rollback and removal](docs/UBUNTU.md).
 ### Fedora 44
 
 ```sh
-sudo dnf install ./yamila-libfprint-0.0.1-11.fc44.x86_64.rpm
+sudo dnf install ./yamila-libfprint-0.0.1-12.fc44.x86_64.rpm
 rpm -V yamila-libfprint
 ```
 

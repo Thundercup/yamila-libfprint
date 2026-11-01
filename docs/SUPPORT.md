@@ -28,3 +28,5 @@ The private library registers only this Yamila driver. Other readers/revisions, 
 Native RAW FpPrint records are not additionally encrypted by the driver. On the checked Fedora installation, root owns the store, parent directories are 0700 and the template file is 0644 with fprintd_var_lib_t. Confidentiality depends on directory/MAC isolation. Existing encrypted stores from other integrations are not migrated or deleted.
 
 Later package revisions can change documentation and packaging without new hardware acceptance. Use each package's build record and corresponding source; do not substitute a historical SRPM for a newer binary.
+
+For preview.3, the updated runtime passed a Fedora device claim/release and no-image algorithm initialization check with SELinux Enforcing and unchanged PAM configuration. This does not extend the hardware or authentication acceptance scope.

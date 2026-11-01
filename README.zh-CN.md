@@ -29,7 +29,7 @@
 在下载目录执行：
 
 ```sh
-sudo apt install ./yamila-libfprint_0.0.1-4ubuntu26.04_amd64.deb
+sudo apt install ./yamila-libfprint_0.0.1-5ubuntu26.04_amd64.deb
 sudo dpkg --verify yamila-libfprint
 ```
 
@@ -46,7 +46,7 @@ sudo pam-auth-update --disable fprintd
 ### Fedora 44
 
 ```sh
-sudo dnf install ./yamila-libfprint-0.0.1-11.fc44.x86_64.rpm
+sudo dnf install ./yamila-libfprint-0.0.1-12.fc44.x86_64.rpm
 rpm -V yamila-libfprint
 ```
 

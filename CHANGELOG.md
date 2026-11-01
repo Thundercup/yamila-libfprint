@@ -1,5 +1,14 @@
 # Change log
 
+## 0.0.1-preview.3 — 2026-11-01
+
+- Reject shared worker UID/GID configurations and restore non-dumpable state in the final native worker.
+- Validate the selected USB device without rejecting it because of an unrelated unsupported revision.
+- Guard zero-capacity native string buffers and align template limits across the pipeline.
+- Record current Fedora CI build dependencies including RPM epochs; retain the historical locked build mode.
+- Fedora package revision 12; Ubuntu package revision 5.
+- Updated runtime passed Fedora device discovery, private-library loading and no-image algorithm initialization on the maintainer system. Fingerprint matching, power transitions and broader hardware compatibility were not revalidated.
+
 ## 0.0.1-preview.2 — 2026-10-18
 
 - Welcome community testing on other x86_64 distribution releases and derivatives; build/test baselines are no longer installation whitelists.

@@ -24,7 +24,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--upstream-archive',type=Path,required=True)
     p.add_argument('--workdir',type=Path,default=ROOT/'build/deb')
-    p.add_argument('--revision',default='4')
+    p.add_argument('--revision',default='5')
     a=p.parse_args();audit()
     if os.geteuid()==0:p.error('build as an ordinary user')
     if text(['dpkg','--print-architecture'])!='amd64':p.error('only amd64 is supported')
